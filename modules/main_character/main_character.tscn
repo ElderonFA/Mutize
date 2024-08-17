@@ -1,62 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk8el1r17snrl"]
+[gd_scene load_steps=17 format=3 uid="uid://dk8el1r17snrl"]
 
-[ext_resource type="Script" path="res://modules/main_character/main_character.gd" id="1_dyv1m"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_makvo"]
+[ext_resource type="Script" path="res://modules/main_character/input_handler.gd" id="1_civdj"]
+[ext_resource type="Script" path="res://modules/main_character/character_state_chart.gd" id="2_betf1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_1ut4f"]
+[ext_resource type="Script" path="res://modules/main_character/attack_behaviour.gd" id="3_aa8or"]
 [ext_resource type="Script" path="res://modules/run_behaviour/run_behaviour.gd" id="3_nv1vj"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_je0ig"]
+[ext_resource type="Resource" uid="uid://dq6achdbn4775" path="res://modules/projectiles_signals/projectiles_signals.tres" id="4_lndwh"]
+[ext_resource type="PackedScene" uid="uid://cu67exmq2qk7x" path="res://modules/projectiles_scenes/melee_projectile/melee_projectile.tscn" id="4_xkuae"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_xidmc"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_xtata"]
 [ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afrpk"]
 radius = 94.1913
-
-[sub_resource type="Animation" id="Animation_pxe1b"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1.375, 1.6875), Vector2(1.375, 1.493), Vector2(1.375, 1.6875)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-2.38419e-07, -83), Vector2(-2.38419e-07, -66), Vector2(-2.38419e-07, -83)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_rawp4"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
+tracks/0/path = NodePath("MainView:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,7 +32,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:position")
+tracks/1/path = NodePath("MainView:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -80,7 +44,47 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/path = NodePath("MainView:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pxe1b"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainView:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.375, 1.6875), Vector2(1.375, 1.493), Vector2(1.375, 1.6875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainView:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -83), Vector2(-2.38419e-07, -66), Vector2(-2.38419e-07, -83)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainView:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -97,7 +101,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:position")
+tracks/0/path = NodePath("MainView:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -109,7 +113,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:scale")
+tracks/1/path = NodePath("MainView:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -121,7 +125,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/path = NodePath("MainView:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -138,18 +142,18 @@ _data = {
 "run": SubResource("Animation_08xbn")
 }
 
-[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_run_behaviour", "_state_chart", "_idle_state", "_run_state")]
-position = Vector2(566, 324)
+[node name="MainCharacter" type="CharacterBody2D"]
+position = Vector2(576, 334)
 scale = Vector2(0.52, 0.52)
 motion_mode = 1
-script = ExtResource("1_dyv1m")
-_run_behaviour = NodePath("Behaviours/Run")
-_state_chart = NodePath("StateChart")
-_idle_state = NodePath("StateChart/CompoundState/Idle")
-_run_state = NodePath("StateChart/CompoundState/Run")
+
+[node name="AttackPoint" type="Node2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_afrpk")
+
+[node name="InputHandler" type="Node" parent="."]
+script = ExtResource("1_civdj")
 
 [node name="Behaviours" type="Node" parent="."]
 
@@ -157,30 +161,66 @@ shape = SubResource("CircleShape2D_afrpk")
 script = ExtResource("3_nv1vj")
 _owner = NodePath("../..")
 
-[node name="StateChart" type="Node" parent="."]
-script = ExtResource("2_makvo")
+[node name="Attack" type="Node" parent="Behaviours" node_paths=PackedStringArray("_attack_point")]
+script = ExtResource("3_aa8or")
+_projectile_scene = ExtResource("4_xkuae")
+_projectiles_signals = ExtResource("4_lndwh")
+_attack_point = NodePath("../../AttackPoint")
 
-[node name="CompoundState" type="Node" parent="StateChart"]
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
+script = ExtResource("2_betf1")
+_run_behaviour = NodePath("../Behaviours/Run")
+_attack_behaviour = NodePath("../Behaviours/Attack")
+_idle_state = NodePath("RootState/Alive/Moving/Idle")
+_run_state = NodePath("RootState/Alive/Moving/Run")
+_attack_state = NodePath("RootState/Alive/Attacking")
+
+[node name="RootState" type="Node" parent="StateChart"]
+script = ExtResource("3_1ut4f")
+initial_state = NodePath("Alive")
+
+[node name="Alive" type="Node" parent="StateChart/RootState"]
+script = ExtResource("5_xtata")
+
+[node name="Moving" type="Node" parent="StateChart/RootState/Alive"]
 script = ExtResource("3_1ut4f")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/CompoundState"]
+[node name="Idle" type="Node" parent="StateChart/RootState/Alive/Moving"]
 script = ExtResource("4_je0ig")
 
-[node name="ToRun" type="Node" parent="StateChart/CompoundState/Idle"]
+[node name="ToRun" type="Node" parent="StateChart/RootState/Alive/Moving/Idle"]
 script = ExtResource("5_xidmc")
 to = NodePath("../../Run")
 event = &"moving_input_pressed"
 delay_in_seconds = "0.0"
 
-[node name="Run" type="Node" parent="StateChart/CompoundState"]
+[node name="ToDeath" type="Node" parent="StateChart/RootState/Alive/Moving/Idle"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../../../Death")
+event = &"123123123"
+delay_in_seconds = "0.0"
+
+[node name="Run" type="Node" parent="StateChart/RootState/Alive/Moving"]
 script = ExtResource("4_je0ig")
 
-[node name="ToIdle" type="Node" parent="StateChart/CompoundState/Run"]
+[node name="ToIdle" type="Node" parent="StateChart/RootState/Alive/Moving/Run"]
 script = ExtResource("5_xidmc")
 to = NodePath("../../Idle")
-event = &"velocity_become_zero"
+event = &"moving_ended"
 delay_in_seconds = "0.0"
+
+[node name="ToDeath" type="Node" parent="StateChart/RootState/Alive/Moving/Run"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../../../Death")
+event = &"12312312"
+delay_in_seconds = "0.0"
+
+[node name="Attacking" type="Node" parent="StateChart/RootState/Alive"]
+script = ExtResource("4_je0ig")
+
+[node name="Death" type="Node" parent="StateChart/RootState"]
+script = ExtResource("4_je0ig")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -189,14 +229,17 @@ libraries = {
 autoplay = "idle"
 playback_default_blend_time = 0.1
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="MainView" type="Node2D" parent="."]
 position = Vector2(-2.38419e-07, -83)
 scale = Vector2(1.375, 1.6875)
 
-[node name="Icon" type="Sprite2D" parent="Visuals"]
+[node name="Icon" type="Sprite2D" parent="MainView"]
 position = Vector2(0.727273, 7.11111)
 scale = Vector2(3.77187, 3.60826)
 texture = ExtResource("7_1ir1p")
 
-[connection signal="state_entered" from="StateChart/CompoundState/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]
-[connection signal="state_entered" from="StateChart/CompoundState/Run" to="AnimationPlayer" method="play" binds= ["run"]]
+[connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="attack"]
+[connection signal="moving_pressed" from="InputHandler" to="StateChart" method="send_event" binds= ["moving_input_pressed"]]
+[connection signal="moving_ended" from="Behaviours/Run" to="StateChart" method="send_event" binds= ["moving_ended"]]
+[connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]
+[connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Run" to="AnimationPlayer" method="play" binds= ["run"]]
