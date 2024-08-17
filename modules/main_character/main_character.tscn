@@ -1,0 +1,202 @@
+[gd_scene load_steps=13 format=3 uid="uid://dk8el1r17snrl"]
+
+[ext_resource type="Script" path="res://modules/main_character/main_character.gd" id="1_dyv1m"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_makvo"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_1ut4f"]
+[ext_resource type="Script" path="res://modules/run_behaviour/run_behaviour.gd" id="3_nv1vj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_je0ig"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_xidmc"]
+[ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_afrpk"]
+radius = 94.1913
+
+[sub_resource type="Animation" id="Animation_pxe1b"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.375, 1.6875), Vector2(1.375, 1.493), Vector2(1.375, 1.6875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -83), Vector2(-2.38419e-07, -66), Vector2(-2.38419e-07, -83)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rawp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.375, 1.6875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -83)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_08xbn"]
+resource_name = "run"
+length = 0.606
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.38419e-07, -83), Vector2(23.0769, -94.2308), Vector2(-2.38419e-07, -83), Vector2(-21.1538, -90.3846), Vector2(-2.38419e-07, -83)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.375, 1.6875), Vector2(1.375, 1.833), Vector2(1.375, 1.6875), Vector2(1.375, 1.833), Vector2(1.375, 1.6875)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.193393, 0.0, -0.21078, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vsur8"]
+_data = {
+"RESET": SubResource("Animation_rawp4"),
+"idle": SubResource("Animation_pxe1b"),
+"run": SubResource("Animation_08xbn")
+}
+
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_run_behaviour", "_state_chart", "_idle_state", "_run_state")]
+position = Vector2(566, 324)
+scale = Vector2(0.52, 0.52)
+motion_mode = 1
+script = ExtResource("1_dyv1m")
+_run_behaviour = NodePath("Behaviours/Run")
+_state_chart = NodePath("StateChart")
+_idle_state = NodePath("StateChart/CompoundState/Idle")
+_run_state = NodePath("StateChart/CompoundState/Run")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_afrpk")
+
+[node name="Behaviours" type="Node" parent="."]
+
+[node name="Run" type="Node" parent="Behaviours" node_paths=PackedStringArray("_owner")]
+script = ExtResource("3_nv1vj")
+_owner = NodePath("../..")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_makvo")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("3_1ut4f")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_je0ig")
+
+[node name="ToRun" type="Node" parent="StateChart/CompoundState/Idle"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../Run")
+event = &"moving_input_pressed"
+delay_in_seconds = "0.0"
+
+[node name="Run" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_je0ig")
+
+[node name="ToIdle" type="Node" parent="StateChart/CompoundState/Run"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../Idle")
+event = &"velocity_become_zero"
+delay_in_seconds = "0.0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vsur8")
+}
+autoplay = "idle"
+playback_default_blend_time = 0.1
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(-2.38419e-07, -83)
+scale = Vector2(1.375, 1.6875)
+
+[node name="Icon" type="Sprite2D" parent="Visuals"]
+position = Vector2(0.727273, 7.11111)
+scale = Vector2(3.77187, 3.60826)
+texture = ExtResource("7_1ir1p")
+
+[connection signal="state_entered" from="StateChart/CompoundState/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]
+[connection signal="state_entered" from="StateChart/CompoundState/Run" to="AnimationPlayer" method="play" binds= ["run"]]
