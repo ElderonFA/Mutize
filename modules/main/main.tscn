@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=4 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
+[ext_resource type="Script" path="res://modules/projectiles_spawner/projectiles_spawner.gd" id="2_7hatb"]
+[ext_resource type="Resource" uid="uid://dq6achdbn4775" path="res://modules/projectiles_signals/projectiles_signals.tres" id="3_hhqcl"]
 
 [node name="Main" type="Node"]
 
 [node name="GameWorld" type="Node2D" parent="."]
 
 [node name="MainCharacter" parent="GameWorld" instance=ExtResource("1_qcywt")]
+
+[node name="ProjectilesSpawner" type="Node2D" parent="GameWorld"]
+script = ExtResource("2_7hatb")
+_projectiles_signals = ExtResource("3_hhqcl")
