@@ -2,6 +2,9 @@ class_name RunBehaviour
 extends Behaviour
 
 
+signal moving_ended
+
+
 @export var _owner: CharacterBody2D
 @export var _move_speed: float = 300
 
@@ -12,3 +15,6 @@ func _physics_process_behaviour(delta: float) -> void:
 	
 	_owner.velocity = input_vector.normalized() * _move_speed
 	_owner.move_and_slide()
+	
+	if _owner.velocity.length() == 0:
+		moving_ended.emit()
