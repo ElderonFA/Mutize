@@ -70,6 +70,7 @@ height = 76.0
 
 [node name="MeleeProjectile" type="Area2D"]
 script = ExtResource("1_cegu0")
+projectile_speed = 120
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3.76, 3.76)

@@ -148,6 +148,7 @@ scale = Vector2(0.52, 0.52)
 motion_mode = 1
 
 [node name="AttackPoint" type="Node2D" parent="."]
+position = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_afrpk")
@@ -166,6 +167,7 @@ script = ExtResource("3_aa8or")
 _projectile_scene = ExtResource("4_xkuae")
 _projectiles_signals = ExtResource("4_lndwh")
 _attack_point = NodePath("../../AttackPoint")
+_attack_spawn_distance = 50.0
 
 [node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
 script = ExtResource("2_betf1")
