@@ -1,0 +1,239 @@
+[gd_scene load_steps=19 format=3 uid="uid://d1f6dy8fxtqr8"]
+
+[ext_resource type="Texture2D" uid="uid://bnsxeqrfq4nnn" path="res://icon.svg" id="1_gfnsu"]
+[ext_resource type="Script" path="res://modules/moving_around_behaviour/moving_around_behaviour.gd" id="2_8jtyt"]
+[ext_resource type="Script" path="res://modules/laborant/laborant_state_chart.gd" id="2_71byd"]
+[ext_resource type="Script" path="res://modules/danger_radar/danger_radar.gd" id="2_fync3"]
+[ext_resource type="Script" path="res://modules/wait_behaviour/wait_behaviour.gd" id="3_182pr"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_g4ces"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2e0th"]
+[ext_resource type="Script" path="res://modules/move_from_object/move_from_object.gd" id="4_uh7yi"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_avdl3"]
+[ext_resource type="Script" path="res://modules/random_state_transition_guard/random_state_transition_guard.gd" id="8_o17co"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dopob"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udehl"]
+radius = 150.0
+
+[sub_resource type="Curve" id="Curve_xi8d0"]
+min_value = 50.0
+max_value = 200.0
+_data = [Vector2(0, 50), 0.0, 396.823, 0, 0, Vector2(1, 200), 9.7573, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_c4iao"]
+min_value = 30.0
+max_value = 60.0
+_data = [Vector2(0, 30), 0.0, 95.8141, 0, 0, Vector2(0.710963, 52.9706), 19.0616, 19.0616, 0, 0, Vector2(1, 60), 4.79782, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_bsrx1"]
+min_value = 1.0
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 2.69293, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tqyd3"]
+min_value = 1.0
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 2.69293, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_dbopt"]
+script = ExtResource("8_o17co")
+_chance = 0.5
+
+[sub_resource type="Resource" id="Resource_0ef53"]
+script = ExtResource("8_o17co")
+_chance = 0.05
+
+[node name="Laborant" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dopob")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -30)
+scale = Vector2(0.286, 0.554)
+texture = ExtResource("1_gfnsu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collision_mask = 4
+
+[node name="DangerRadar" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("2_fync3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerRadar"]
+shape = SubResource("CircleShape2D_udehl")
+
+[node name="Behaviours" type="Node" parent="."]
+
+[node name="MoveAround" type="Node" parent="Behaviours" node_paths=PackedStringArray("_owner", "_ray_cast")]
+script = ExtResource("2_8jtyt")
+_owner = NodePath("../..")
+_moving_distance_distribution = SubResource("Curve_xi8d0")
+_ray_cast = NodePath("../../RayCast2D")
+_moving_speed = 70.0
+
+[node name="ChaoticRunning" type="Node" parent="Behaviours" node_paths=PackedStringArray("_owner", "_ray_cast")]
+script = ExtResource("2_8jtyt")
+_owner = NodePath("../..")
+_moving_distance_distribution = SubResource("Curve_c4iao")
+_ray_cast = NodePath("../../RayCast2D")
+_moving_speed = 140.0
+
+[node name="Wait" type="Node" parent="Behaviours"]
+script = ExtResource("3_182pr")
+_time_amount_distribution = SubResource("Curve_bsrx1")
+
+[node name="WorryingWait" type="Node" parent="Behaviours"]
+script = ExtResource("3_182pr")
+_time_amount_distribution = SubResource("Curve_tqyd3")
+
+[node name="MoveFromDanger" type="Node" parent="Behaviours" node_paths=PackedStringArray("_owner")]
+script = ExtResource("4_uh7yi")
+_owner = NodePath("../..")
+_moving_speed = 140.0
+
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_danger_radar", "_moving_around_behaviour", "_wait_behaviour", "_chaotic_running_behaviour", "_worrying_wait_behaviour", "_move_from_danger_behaviour", "_inactive_state", "_active_state", "_idle_state", "_moving_around_state", "_worrying_state", "_running_from_danger_state", "_chaotic_running_state", "_recovery_after_hit_state", "_dying_state")]
+script = ExtResource("2_71byd")
+_danger_radar = NodePath("../DangerRadar")
+_moving_around_behaviour = NodePath("../Behaviours/MoveAround")
+_wait_behaviour = NodePath("../Behaviours/Wait")
+_chaotic_running_behaviour = NodePath("../Behaviours/ChaoticRunning")
+_worrying_wait_behaviour = NodePath("../Behaviours/WorryingWait")
+_move_from_danger_behaviour = NodePath("../Behaviours/MoveFromDanger")
+_inactive_state = NodePath("RootState/Inactive")
+_active_state = NodePath("RootState/Active")
+_idle_state = NodePath("RootState/Active/Normal/Idle")
+_moving_around_state = NodePath("RootState/Active/Normal/MovingAround")
+_worrying_state = NodePath("RootState/Active/Scared/Worrying")
+_running_from_danger_state = NodePath("RootState/Active/Scared/RunningFromDanger")
+_chaotic_running_state = NodePath("RootState/Active/Scared/ChaoticRunning")
+_recovery_after_hit_state = NodePath("RootState/Active/RecoveringAfterHit")
+_dying_state = NodePath("RootState/Active/Dying")
+
+[node name="RootState" type="Node" parent="StateChart"]
+script = ExtResource("3_g4ces")
+initial_state = NodePath("Active")
+
+[node name="Inactive" type="Node" parent="StateChart/RootState"]
+script = ExtResource("4_2e0th")
+
+[node name="ToActive" type="Node" parent="StateChart/RootState/Inactive"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Active")
+event = &"activated"
+delay_in_seconds = "0.0"
+
+[node name="Active" type="Node" parent="StateChart/RootState"]
+script = ExtResource("3_g4ces")
+initial_state = NodePath("Scared")
+
+[node name="ToInactive" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Inactive")
+event = &"deactivated"
+delay_in_seconds = "0.0"
+
+[node name="Normal" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("3_g4ces")
+initial_state = NodePath("MovingAround")
+
+[node name="ToScared" type="Node" parent="StateChart/RootState/Active/Normal"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Scared")
+event = &"hitted"
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/RootState/Active/Normal"]
+script = ExtResource("4_2e0th")
+
+[node name="ToMovingAround" type="Node" parent="StateChart/RootState/Active/Normal/Idle"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../MovingAround")
+event = &"wait_timeout"
+delay_in_seconds = "0.0"
+
+[node name="MovingAround" type="Node" parent="StateChart/RootState/Active/Normal"]
+script = ExtResource("4_2e0th")
+
+[node name="ToIdle" type="Node" parent="StateChart/RootState/Active/Normal/MovingAround"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Idle")
+event = &"moved_to_another_position"
+guard = SubResource("Resource_dbopt")
+delay_in_seconds = "0.0"
+
+[node name="Scared" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("3_g4ces")
+initial_state = NodePath("ChaoticRunning")
+
+[node name="Worrying" type="Node" parent="StateChart/RootState/Active/Scared"]
+script = ExtResource("4_2e0th")
+
+[node name="ToChaoticRunning" type="Node" parent="StateChart/RootState/Active/Scared/Worrying"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../ChaoticRunning")
+event = &"wait_timeout"
+delay_in_seconds = "0.0"
+
+[node name="ToRunningFromDanger" type="Node" parent="StateChart/RootState/Active/Scared/Worrying"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../RunningFromDanger")
+event = &"danger_found"
+delay_in_seconds = "0.0"
+
+[node name="RunningFromDanger" type="Node" parent="StateChart/RootState/Active/Scared"]
+script = ExtResource("4_2e0th")
+
+[node name="ToWorrying" type="Node" parent="StateChart/RootState/Active/Scared/RunningFromDanger"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Worrying")
+event = &"danger_lost"
+delay_in_seconds = "0.0"
+
+[node name="ChaoticRunning" type="Node" parent="StateChart/RootState/Active/Scared"]
+script = ExtResource("4_2e0th")
+
+[node name="ToWorrying" type="Node" parent="StateChart/RootState/Active/Scared/ChaoticRunning"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Worrying")
+event = &"moved_to_another_position"
+guard = SubResource("Resource_0ef53")
+delay_in_seconds = "0.0"
+
+[node name="ToRunningFromDanger" type="Node" parent="StateChart/RootState/Active/Scared/ChaoticRunning"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../RunningFromDanger")
+event = &"danger_found"
+delay_in_seconds = "0.0"
+
+[node name="RecoveringAfterHit" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("4_2e0th")
+
+[node name="ToScared" type="Node" parent="StateChart/RootState/Active/RecoveringAfterHit"]
+script = ExtResource("5_avdl3")
+to = NodePath("../../Scared")
+event = &"recovery_after_hit_ended"
+delay_in_seconds = "0.0"
+
+[node name="Dying" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("4_2e0th")
+
+[connection signal="danger_found" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]
+[connection signal="danger_lost" from="DangerRadar" to="Behaviours/MoveFromDanger" method="clear_subject"]
+[connection signal="nearest_danger_changed" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]
+[connection signal="moved_to_another_position" from="Behaviours/MoveAround" to="StateChart" method="send_event" binds= ["moved_to_another_position"]]
+[connection signal="moved_to_another_position" from="Behaviours/ChaoticRunning" to="StateChart" method="send_event" binds= ["moved_to_another_position"]]
+[connection signal="wait_timeout" from="Behaviours/Wait" to="StateChart" method="send_event" binds= ["wait_timeout"]]
+[connection signal="wait_timeout" from="Behaviours/WorryingWait" to="StateChart" method="send_event" binds= ["wait_timeout"]]

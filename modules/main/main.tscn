@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=27 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ccg6ci2v280we" path="res://modules/main_room/up_wall_tile.png" id="6_pfh5n"]
 [ext_resource type="Texture2D" uid="uid://btufx2jfj0iu8" path="res://modules/main_room/double_door_left/double_door_left_door_right.png" id="7_pd17a"]
 [ext_resource type="Texture2D" uid="uid://b6oe3lrvpxt3c" path="res://modules/main_room/double_door_left/double_door_left_door_left.png" id="8_jgtof"]
+[ext_resource type="PackedScene" uid="uid://d1f6dy8fxtqr8" path="res://modules/laborant/laborant.tscn" id="12_i0nsn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sct0e"]
 size = Vector2(925, 99.2857)
@@ -115,6 +116,45 @@ _data = {
 "open": SubResource("Animation_7sdb1")
 }
 
+[sub_resource type="Animation" id="Animation_djflj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05)]
+}
+
 [sub_resource type="Animation" id="Animation_re784"]
 resource_name = "open"
 length = 1.5
@@ -155,7 +195,13 @@ tracks/2/keys = {
 "values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_djflj"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
+_data = {
+"RESET": SubResource("Animation_djflj"),
+"open": SubResource("Animation_re784")
+}
+
+[sub_resource type="Animation" id="Animation_4m63b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -191,13 +237,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.00136e-05, 1.00136e-05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
-_data = {
-"RESET": SubResource("Animation_djflj"),
-"open": SubResource("Animation_re784")
+"values": [Vector2(1.28376, -0.511901)]
 }
 
 [sub_resource type="Animation" id="Animation_ys7aq"]
@@ -240,45 +280,6 @@ tracks/2/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_4m63b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7, -1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("indicator:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.28376, -0.511901)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gdmkd"]
 _data = {
 "RESET": SubResource("Animation_4m63b"),
@@ -307,6 +308,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 926.57, 100)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/WallTile"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/WallTile/StaticBody2D"]
 position = Vector2(1.07144, 1.78571)
@@ -320,6 +323,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 700)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallLeft"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallLeft/StaticBody2D"]
 position = Vector2(0, 0.5)
@@ -333,6 +338,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 700)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallRight"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallRight/StaticBody2D"]
 position = Vector2(0, 0.5)
@@ -347,6 +354,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 1200)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallDown"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallDown/StaticBody2D"]
 position = Vector2(-7.50061, 0.5)
@@ -430,3 +439,17 @@ libraries = {
 [node name="ProjectilesSpawner" type="Node2D" parent="GameWorld"]
 script = ExtResource("2_7hatb")
 _projectiles_signals = ExtResource("3_hhqcl")
+
+[node name="Enemies" type="Node2D" parent="GameWorld"]
+
+[node name="Laborant" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
+position = Vector2(402, 337)
+
+[node name="Laborant2" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
+position = Vector2(852, 416)
+
+[node name="Laborant3" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
+position = Vector2(722, 277)
+
+[node name="Laborant4" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
+position = Vector2(708, 464)
