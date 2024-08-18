@@ -144,7 +144,7 @@ _data = {
 
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(576, 334)
-scale = Vector2(0.52, 0.52)
+scale = Vector2(0.240002, 0.240002)
 motion_mode = 1
 
 [node name="AttackPoint" type="Node2D" parent="."]

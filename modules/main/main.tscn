@@ -1,12 +1,429 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=26 format=3 uid="uid://cpdqnrnip6wup"]
 
+[ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
+[ext_resource type="Texture2D" uid="uid://ctbhjpchc7uc6" path="res://modules/main_room/wall_tile.png" id="2_1coly"]
 [ext_resource type="Script" path="res://modules/projectiles_spawner/projectiles_spawner.gd" id="2_7hatb"]
 [ext_resource type="Resource" uid="uid://dq6achdbn4775" path="res://modules/projectiles_signals/projectiles_signals.tres" id="3_hhqcl"]
+[ext_resource type="Texture2D" uid="uid://ctunicgotcja7" path="res://modules/main_room/double_door_front/double_door_frame.png" id="4_00mhm"]
+[ext_resource type="Texture2D" uid="uid://85wwtg5gu61w" path="res://modules/main_room/double_door_front/double_door_one_door.png" id="5_dg1py"]
+[ext_resource type="Texture2D" uid="uid://b8al4s18io0u2" path="res://modules/main_room/double_door_left/double_door_left_frame.png" id="6_2c0w7"]
+[ext_resource type="Texture2D" uid="uid://ccg6ci2v280we" path="res://modules/main_room/up_wall_tile.png" id="6_pfh5n"]
+[ext_resource type="Texture2D" uid="uid://btufx2jfj0iu8" path="res://modules/main_room/double_door_left/double_door_left_door_right.png" id="7_pd17a"]
+[ext_resource type="Texture2D" uid="uid://b6oe3lrvpxt3c" path="res://modules/main_room/double_door_left/double_door_left_door_left.png" id="8_jgtof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sct0e"]
+size = Vector2(925, 99.2857)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4emp6"]
+size = Vector2(32, 705)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2oeg"]
+size = Vector2(17.0013, 1199)
+
+[sub_resource type="Gradient" id="Gradient_h61io"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_af6cr"]
+gradient = SubResource("Gradient_h61io")
+fill = 1
+fill_from = Vector2(0.509174, 0.518349)
+fill_to = Vector2(0.830275, 0.62844)
+
+[sub_resource type="Animation" id="Animation_14hay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17.51, 12.47)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftDoor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20.51, 12.485)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.24658, -0.895835)]
+}
+
+[sub_resource type="Animation" id="Animation_7sdb1"]
+resource_name = "open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1.00833, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17.51, 12.47), Vector2(-19, 16), Vector2(-19, 16), Vector2(-55, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftDoor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(20.51, 12.485), Vector2(22, 16), Vector2(22, 16), Vector2(58, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1e4f"]
+_data = {
+"RESET": SubResource("Animation_14hay"),
+"open": SubResource("Animation_7sdb1")
+}
+
+[sub_resource type="Animation" id="Animation_re784"]
+resource_name = "open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 7), Vector2(5, 9), Vector2(5, 9), Vector2(-4, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7, -1), Vector2(14, -2), Vector2(14, -2), Vector2(18, -11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_djflj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
+_data = {
+"RESET": SubResource("Animation_djflj"),
+"open": SubResource("Animation_re784")
+}
+
+[sub_resource type="Animation" id="Animation_ys7aq"]
+resource_name = "open"
+length = 1.5035
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.833333, 1, 1.49167),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 7), Vector2(3, 12), Vector2(3, 12), Vector2(-7, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.833333, 1, 1.49167),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7, -1), Vector2(12, 1), Vector2(12, 1), Vector2(18, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 0.966667, 1.2, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_4m63b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.28376, -0.511901)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdmkd"]
+_data = {
+"RESET": SubResource("Animation_4m63b"),
+"open": SubResource("Animation_ys7aq")
+}
 
 [node name="Main" type="Node"]
 
 [node name="GameWorld" type="Node2D" parent="."]
+
+[node name="RoomVisual" type="Node2D" parent="GameWorld"]
+
+[node name="FloorTile" type="Sprite2D" parent="GameWorld/RoomVisual"]
+texture_repeat = 2
+position = Vector2(580, 321)
+texture = ExtResource("1_p8wyv")
+region_enabled = true
+region_rect = Rect2(0, 0, 1200, 675.82)
+
+[node name="WallTile" type="Sprite2D" parent="GameWorld/RoomVisual"]
+texture_repeat = 2
+position = Vector2(579, 24)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_1coly")
+region_enabled = true
+region_rect = Rect2(0, 0, 926.57, 100)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/WallTile"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/WallTile/StaticBody2D"]
+position = Vector2(1.07144, 1.78571)
+shape = SubResource("RectangleShape2D_sct0e")
+
+[node name="UpWallLeft" type="Sprite2D" parent="GameWorld/RoomVisual"]
+texture_repeat = 2
+position = Vector2(16, 333)
+texture = ExtResource("6_pfh5n")
+region_enabled = true
+region_rect = Rect2(0, 0, 32.53, 700)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallLeft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallLeft/StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4emp6")
+
+[node name="UpWallRight" type="Sprite2D" parent="GameWorld/RoomVisual"]
+texture_repeat = 2
+position = Vector2(1159, 320)
+texture = ExtResource("6_pfh5n")
+region_enabled = true
+region_rect = Rect2(0, 0, 32.53, 700)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallRight"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallRight/StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4emp6")
+
+[node name="UpWallDown" type="Sprite2D" parent="GameWorld/RoomVisual"]
+texture_repeat = 2
+position = Vector2(583, 632)
+rotation = -1.57079
+texture = ExtResource("6_pfh5n")
+region_enabled = true
+region_rect = Rect2(0, 0, 32.53, 1200)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallDown"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallDown/StaticBody2D"]
+position = Vector2(-7.50061, 0.5)
+shape = SubResource("RectangleShape2D_d2oeg")
+
+[node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual"]
+position = Vector2(579, 59)
+scale = Vector2(0.828548, 0.828548)
+texture = ExtResource("4_00mhm")
+
+[node name="RightDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+position = Vector2(-17.51, 12.47)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_dg1py")
+
+[node name="LeftDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+position = Vector2(20.51, 12.485)
+texture = ExtResource("5_dg1py")
+
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+position = Vector2(1, -47)
+scale = Vector2(2.24658, -0.895835)
+texture = SubResource("GradientTexture2D_af6cr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+libraries = {
+"": SubResource("AnimationLibrary_x1e4f")
+}
+
+[node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual"]
+modulate = Color(0.737193, 0.737193, 0.737193, 1)
+position = Vector2(1136, 341)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_2c0w7")
+
+[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+position = Vector2(0, 7)
+texture = ExtResource("7_pd17a")
+
+[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+position = Vector2(7, -1)
+texture = ExtResource("8_jgtof")
+
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+position = Vector2(5, -45)
+rotation = -0.591657
+scale = Vector2(1.00136e-05, 1.00136e-05)
+texture = SubResource("GradientTexture2D_af6cr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+libraries = {
+"": SubResource("AnimationLibrary_dyvwg")
+}
+
+[node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual"]
+modulate = Color(0.737193, 0.737193, 0.737193, 1)
+position = Vector2(43, 343)
+texture = ExtResource("6_2c0w7")
+
+[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+position = Vector2(0, 7)
+texture = ExtResource("7_pd17a")
+
+[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+position = Vector2(7, -1)
+texture = ExtResource("8_jgtof")
+
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+position = Vector2(5, -45)
+rotation = -0.591657
+scale = Vector2(1.28376, -0.511901)
+texture = SubResource("GradientTexture2D_af6cr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+libraries = {
+"": SubResource("AnimationLibrary_gdmkd")
+}
 
 [node name="MainCharacter" parent="GameWorld" instance=ExtResource("1_qcywt")]
 
