@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d1f6dy8fxtqr8"]
+[gd_scene load_steps=35 format=3 uid="uid://d1f6dy8fxtqr8"]
 
 [ext_resource type="Script" path="res://modules/laborant/animation_setter.gd" id="1_ah71e"]
 [ext_resource type="Texture2D" uid="uid://boqiowmvctxnm" path="res://modules/laborant/laborant.png" id="1_by6nc"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="6_8kpl8"]
 [ext_resource type="Script" path="res://modules/random_state_transition_guard/random_state_transition_guard.gd" id="8_o17co"]
 [ext_resource type="Script" path="res://modules/die_behaviour/die_behaviour.gd" id="11_8twk0"]
+[ext_resource type="Script" path="res://modules/corpse/corpse.gd" id="18_hoi0s"]
 
 [sub_resource type="Animation" id="Animation_2vugw"]
 length = 0.001
@@ -79,6 +80,70 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3grbd"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -28.792), Vector2(-1, -40), Vector2(-1.49012e-08, -7), Vector2(1.42109e-14, -18), Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0797244, -1.55276]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.515625, 0.499222), Vector2(0.555626, 0.53795), Vector2(0.428789, 0.543098)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.552956, 0.552956, 0.552956, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Sprite2D:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ualtu")]
 }
 
 [sub_resource type="Animation" id="Animation_kvqjn"]
@@ -268,70 +333,6 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_3grbd"]
-resource_name = "die"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -28.792), Vector2(-1, -40), Vector2(-1.49012e-08, -7), Vector2(1.42109e-14, -18), Vector2(0, -8)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0797244, -1.55276]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.515625, 0.499222), Vector2(0.555626, 0.53795), Vector2(0.428789, 0.543098)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Sprite2D:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.552956, 0.552956, 0.552956, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Sprite2D:texture")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_ualtu")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkc6a"]
 _data = {
 "RESET": SubResource("Animation_2vugw"),
@@ -381,6 +382,10 @@ _chance = 0.5
 [sub_resource type="Resource" id="Resource_0ef53"]
 script = ExtResource("8_o17co")
 _chance = 0.05
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfxg"]
+radius = 21.0
+height = 82.0
 
 [node name="Laborant" type="CharacterBody2D"]
 collision_layer = 2
@@ -600,7 +605,18 @@ delay_in_seconds = "0.0"
 [node name="Die" type="Node" parent="StateChart/RootState/Active"]
 script = ExtResource("4_2e0th")
 
+[node name="CorpseArea" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 2
+script = ExtResource("18_hoi0s")
+time_to_eat = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CorpseArea"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_0wfxg")
+
 [connection signal="dead" from="DamageableArea2D" to="StateChart" method="_on_damageable_area_2d_dead"]
+[connection signal="dead" from="DamageableArea2D" to="CorpseArea" method="_on_damageable_area_2d_dead"]
 [connection signal="danger_found" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]
 [connection signal="danger_lost" from="DangerRadar" to="Behaviours/MoveFromDanger" method="clear_subject"]
 [connection signal="nearest_danger_changed" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]

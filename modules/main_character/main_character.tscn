@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk8el1r17snrl"]
+[gd_scene load_steps=20 format=3 uid="uid://dk8el1r17snrl"]
 
 [ext_resource type="Script" path="res://modules/main_character/input_handler.gd" id="1_civdj"]
 [ext_resource type="Script" path="res://modules/main_character/character_state_chart.gd" id="2_betf1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cu67exmq2qk7x" path="res://modules/projectiles_scenes/melee_projectile/melee_projectile.tscn" id="4_xkuae"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_xidmc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_xtata"]
+[ext_resource type="Script" path="res://modules/eat_behaviour/eat_behaviour.gd" id="6_rrb68"]
 [ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afrpk"]
@@ -52,6 +53,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainView/Icon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.727273, 7.11111)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainView/Icon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.77187, 3.60826)]
 }
 
 [sub_resource type="Animation" id="Animation_pxe1b"]
@@ -135,12 +160,44 @@ tracks/2/keys = {
 "values": [0.0, 0.193393, 0.0, -0.21078, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_hmiaa"]
+resource_name = "eating"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainView/Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(0.727273, 7.11111)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainView/Icon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3.77187, 3.60826), Vector2(3.77187, 3.80579), Vector2(3.77187, 3.09763), Vector2(3.77187, 3.60826)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsur8"]
 _data = {
 "RESET": SubResource("Animation_rawp4"),
+"eating": SubResource("Animation_hmiaa"),
 "idle": SubResource("Animation_pxe1b"),
 "run": SubResource("Animation_08xbn")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2u4e"]
+radius = 108.332
 
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(576, 334)
@@ -152,6 +209,22 @@ position = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_afrpk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vsur8")
+}
+autoplay = "idle"
+playback_default_blend_time = 0.1
+
+[node name="MainView" type="Node2D" parent="."]
+position = Vector2(-2.38419e-07, -83)
+scale = Vector2(1.375, 1.6875)
+
+[node name="Icon" type="Sprite2D" parent="MainView"]
+position = Vector2(0.727273, 7.11111)
+scale = Vector2(3.77187, 3.60826)
+texture = ExtResource("7_1ir1p")
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("1_civdj")
@@ -169,6 +242,16 @@ _projectiles_signals = ExtResource("4_lndwh")
 _attack_point = NodePath("../../AttackPoint")
 _attack_spawn_distance = 50.0
 _attack_delay = 0.2
+
+[node name="Eat" type="Node" parent="Behaviours" node_paths=PackedStringArray("_animation_player", "_behaviours_for_onoff", "_eating_timer", "_state_chart")]
+script = ExtResource("6_rrb68")
+_animation_player = NodePath("../../AnimationPlayer")
+_behaviours_for_onoff = [NodePath("../Run"), NodePath("../Attack")]
+_eating_timer = NodePath("Timer")
+_state_chart = NodePath("../../StateChart")
+
+[node name="Timer" type="Timer" parent="Behaviours/Eat"]
+one_shot = true
 
 [node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
 script = ExtResource("2_betf1")
@@ -204,6 +287,12 @@ to = NodePath("../../../../Death")
 event = &"123123123"
 delay_in_seconds = "0.0"
 
+[node name="ToEating" type="Node" parent="StateChart/RootState/Alive/Moving/Idle"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../Eating")
+event = &"eating_input_pressed"
+delay_in_seconds = "0.0"
+
 [node name="Run" type="Node" parent="StateChart/RootState/Alive/Moving"]
 script = ExtResource("4_je0ig")
 
@@ -219,31 +308,47 @@ to = NodePath("../../../../Death")
 event = &"12312312"
 delay_in_seconds = "0.0"
 
+[node name="ToEating" type="Node" parent="StateChart/RootState/Alive/Moving/Run"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../Eating")
+event = &"eating_input_pressed"
+delay_in_seconds = "0.0"
+
+[node name="Eating" type="Node" parent="StateChart/RootState/Alive/Moving"]
+script = ExtResource("4_je0ig")
+
+[node name="ToDeath" type="Node" parent="StateChart/RootState/Alive/Moving/Eating"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../../../Death")
+event = &"12312312"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/RootState/Alive/Moving/Eating"]
+script = ExtResource("5_xidmc")
+to = NodePath("../../Idle")
+event = &"eating_ended"
+delay_in_seconds = "0.0"
+
 [node name="Attacking" type="Node" parent="StateChart/RootState/Alive"]
 script = ExtResource("4_je0ig")
 
 [node name="Death" type="Node" parent="StateChart/RootState"]
 script = ExtResource("4_je0ig")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_vsur8")
-}
-autoplay = "idle"
-playback_default_blend_time = 0.1
+[node name="EatingArea" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="MainView" type="Node2D" parent="."]
-position = Vector2(-2.38419e-07, -83)
-scale = Vector2(1.375, 1.6875)
-
-[node name="Icon" type="Sprite2D" parent="MainView"]
-position = Vector2(0.727273, 7.11111)
-scale = Vector2(3.77187, 3.60826)
-texture = ExtResource("7_1ir1p")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EatingArea"]
+shape = SubResource("CircleShape2D_a2u4e")
 
 [connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="start_attacking"]
 [connection signal="attack_released" from="InputHandler" to="Behaviours/Attack" method="stop_attacking"]
+[connection signal="eat_pressed" from="InputHandler" to="Behaviours/Eat" method="_on_input_handler_eat_pressed"]
+[connection signal="eat_released" from="InputHandler" to="Behaviours/Eat" method="_on_input_handler_eat_released"]
 [connection signal="moving_pressed" from="InputHandler" to="StateChart" method="send_event" binds= ["moving_input_pressed"]]
 [connection signal="moving_ended" from="Behaviours/Run" to="StateChart" method="send_event" binds= ["moving_ended"]]
+[connection signal="timeout" from="Behaviours/Eat/Timer" to="Behaviours/Eat" method="_on_timer_timeout"]
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Run" to="AnimationPlayer" method="play" binds= ["run"]]
+[connection signal="area_entered" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_entered"]
+[connection signal="area_exited" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_exited"]

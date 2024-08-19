@@ -26,11 +26,13 @@ func _ready() -> void:
 
 
 func _on_idle_state_entered() -> void:
-	print("idle_entered")
+	#print("idle_entered")
+	pass
 
 
 func _on_idle_state_exited() -> void:
-	print("idle_ex")
+	#print("idle_ex")
+	pass
 
 
 func _on_run_state_entered() -> void:

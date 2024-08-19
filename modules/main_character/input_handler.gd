@@ -6,6 +6,9 @@ signal moving_pressed
 signal attack_pressed
 signal attack_released
 
+signal eat_pressed
+signal eat_released
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("character_left")\
@@ -16,6 +19,10 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("character_attack"):
 		attack_pressed.emit()
-	
 	if event.is_action_released("character_attack"):
 		attack_released.emit()
+		
+	if event.is_action_pressed("character_eat"):
+		eat_pressed.emit()
+	if event.is_action_released("character_eat"):
+		eat_released.emit()
