@@ -168,6 +168,7 @@ _projectile_scene = ExtResource("4_xkuae")
 _projectiles_signals = ExtResource("4_lndwh")
 _attack_point = NodePath("../../AttackPoint")
 _attack_spawn_distance = 50.0
+_attack_delay = 0.2
 
 [node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
 script = ExtResource("2_betf1")
@@ -240,7 +241,8 @@ position = Vector2(0.727273, 7.11111)
 scale = Vector2(3.77187, 3.60826)
 texture = ExtResource("7_1ir1p")
 
-[connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="attack"]
+[connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="start_attacking"]
+[connection signal="attack_released" from="InputHandler" to="Behaviours/Attack" method="stop_attacking"]
 [connection signal="moving_pressed" from="InputHandler" to="StateChart" method="send_event" binds= ["moving_input_pressed"]]
 [connection signal="moving_ended" from="Behaviours/Run" to="StateChart" method="send_event" binds= ["moving_ended"]]
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]

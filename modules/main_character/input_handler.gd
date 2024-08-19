@@ -2,7 +2,9 @@ extends Node
 
 
 signal moving_pressed
+
 signal attack_pressed
+signal attack_released
 
 
 func _input(event: InputEvent) -> void:
@@ -14,3 +16,6 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("character_attack"):
 		attack_pressed.emit()
+	
+	if event.is_action_released("character_attack"):
+		attack_released.emit()
