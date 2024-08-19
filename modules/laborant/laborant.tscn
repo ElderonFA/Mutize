@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1f6dy8fxtqr8"]
+[gd_scene load_steps=28 format=3 uid="uid://d1f6dy8fxtqr8"]
 
 [ext_resource type="Script" path="res://modules/laborant/animation_setter.gd" id="1_ah71e"]
 [ext_resource type="Texture2D" uid="uid://boqiowmvctxnm" path="res://modules/laborant/laborant.png" id="1_by6nc"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://modules/wait_behaviour/wait_behaviour.gd" id="3_182pr"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_g4ces"]
 [ext_resource type="Texture2D" uid="uid://c1rye42pxys28" path="res://modules/laborant/laborant_panic.png" id="3_nunii"]
+[ext_resource type="AudioStream" uid="uid://clw0mlx3aj7pu" path="res://modules/laborant/breath.ogg" id="4_0ygly"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2e0th"]
 [ext_resource type="Script" path="res://modules/move_from_object/move_from_object.gd" id="4_uh7yi"]
+[ext_resource type="AudioStream" uid="uid://c1lbk4pfr3c74" path="res://modules/laborant/scared_scream.ogg" id="5_74nfu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_avdl3"]
 [ext_resource type="Script" path="res://modules/random_state_transition_guard/random_state_transition_guard.gd" id="8_o17co"]
 
@@ -115,6 +117,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_by6nc")]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BreathAudioPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ns4rq"]
@@ -222,6 +238,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ExtResource("3_nunii")]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScreamAudioPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkc6a"]
 _data = {
@@ -279,6 +309,13 @@ libraries = {
 }
 autoplay = "idle"
 script = ExtResource("1_ah71e")
+
+[node name="BreathAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0ygly")
+volume_db = 10.0
+
+[node name="ScreamAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_74nfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dopob")
