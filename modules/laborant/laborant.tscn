@@ -1,18 +1,238 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1f6dy8fxtqr8"]
+[gd_scene load_steps=26 format=3 uid="uid://d1f6dy8fxtqr8"]
 
-[ext_resource type="Texture2D" uid="uid://bnsxeqrfq4nnn" path="res://icon.svg" id="1_gfnsu"]
+[ext_resource type="Script" path="res://modules/laborant/animation_setter.gd" id="1_ah71e"]
+[ext_resource type="Texture2D" uid="uid://boqiowmvctxnm" path="res://modules/laborant/laborant.png" id="1_by6nc"]
 [ext_resource type="Script" path="res://modules/moving_around_behaviour/moving_around_behaviour.gd" id="2_8jtyt"]
 [ext_resource type="Script" path="res://modules/laborant/laborant_state_chart.gd" id="2_71byd"]
 [ext_resource type="Script" path="res://modules/danger_radar/danger_radar.gd" id="2_fync3"]
 [ext_resource type="Script" path="res://modules/wait_behaviour/wait_behaviour.gd" id="3_182pr"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_g4ces"]
+[ext_resource type="Texture2D" uid="uid://c1rye42pxys28" path="res://modules/laborant/laborant_panic.png" id="3_nunii"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2e0th"]
 [ext_resource type="Script" path="res://modules/move_from_object/move_from_object.gd" id="4_uh7yi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_avdl3"]
 [ext_resource type="Script" path="res://modules/random_state_transition_guard/random_state_transition_guard.gd" id="8_o17co"]
 
+[sub_resource type="Animation" id="Animation_2vugw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.515625, 0.499222)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -28.792)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_by6nc")]
+}
+
+[sub_resource type="Animation" id="Animation_kvqjn"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.515625, 0.499222), Vector2(0.515625, 0.475111), Vector2(0.515625, 0.499222)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -28.792), Vector2(0, -26), Vector2(0, -28.792)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_by6nc")]
+}
+
+[sub_resource type="Animation" id="Animation_ns4rq"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.515625, 0.528334), Vector2(0.515625, 0.499222), Vector2(0.515625, 0.527098), Vector2(0.515625, 0.499222), Vector2(0.515625, 0.528334)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7.44984, -33.0472), Vector2(0, -28.792), Vector2(-4.27564, -33.9881), Vector2(0, -28.792), Vector2(7.44984, -33.0472)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.216294, 0.0, -0.137767, 0.0, 0.216294]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_by6nc")]
+}
+
+[sub_resource type="Animation" id="Animation_htfb1"]
+resource_name = "run_panic"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.515625, 0.528334), Vector2(0.515625, 0.499222), Vector2(0.515625, 0.527098), Vector2(0.515625, 0.499222), Vector2(0.515625, 0.528334)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7.44984, -33.0472), Vector2(0, -28.792), Vector2(-4.27564, -33.9881), Vector2(0, -28.792), Vector2(7.44984, -33.0472)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.216294, 0.0, -0.137767, 0.0, 0.216294]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_nunii")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkc6a"]
+_data = {
+"RESET": SubResource("Animation_2vugw"),
+"idle": SubResource("Animation_kvqjn"),
+"run": SubResource("Animation_ns4rq"),
+"run_panic": SubResource("Animation_htfb1")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dopob"]
-radius = 8.0
+radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udehl"]
 radius = 150.0
@@ -53,15 +273,22 @@ _chance = 0.05
 collision_layer = 2
 collision_mask = 4
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkc6a")
+}
+autoplay = "idle"
+script = ExtResource("1_ah71e")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dopob")
 
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-position = Vector2(0, -30)
-scale = Vector2(0.286, 0.554)
-texture = ExtResource("1_gfnsu")
+position = Vector2(0, -28.792)
+scale = Vector2(0.515625, 0.499222)
+texture = ExtResource("1_by6nc")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)
@@ -104,9 +331,10 @@ script = ExtResource("4_uh7yi")
 _owner = NodePath("../..")
 _moving_speed = 140.0
 
-[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_danger_radar", "_moving_around_behaviour", "_wait_behaviour", "_chaotic_running_behaviour", "_worrying_wait_behaviour", "_move_from_danger_behaviour", "_inactive_state", "_active_state", "_idle_state", "_moving_around_state", "_worrying_state", "_running_from_danger_state", "_chaotic_running_state", "_recovery_after_hit_state", "_dying_state")]
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_danger_radar", "_animation_setter", "_moving_around_behaviour", "_wait_behaviour", "_chaotic_running_behaviour", "_worrying_wait_behaviour", "_move_from_danger_behaviour", "_inactive_state", "_active_state", "_idle_state", "_moving_around_state", "_worrying_state", "_running_from_danger_state", "_chaotic_running_state", "_recovery_after_hit_state", "_dying_state")]
 script = ExtResource("2_71byd")
 _danger_radar = NodePath("../DangerRadar")
+_animation_setter = NodePath("../AnimationPlayer")
 _moving_around_behaviour = NodePath("../Behaviours/MoveAround")
 _wait_behaviour = NodePath("../Behaviours/Wait")
 _chaotic_running_behaviour = NodePath("../Behaviours/ChaoticRunning")

@@ -2,6 +2,7 @@ extends StateChart
 
 
 @export var _danger_radar: DangerRadar
+@export var _animation_setter: AnimationSetter
 
 @export_group("Behaviours")
 @export var _moving_around_behaviour: Behaviour
@@ -36,19 +37,24 @@ func _ready() -> void:
 	# states
 	# normal
 	_moving_around_state.state_entered.connect(_moving_around_behaviour.activate)
+	_moving_around_state.state_entered.connect(_animation_setter.play_run_anim)
 	_moving_around_state.state_exited.connect(_moving_around_behaviour.deactivate)
 	
 	_idle_state.state_entered.connect(_wait_behaviour.activate)
+	_idle_state.state_entered.connect(_animation_setter.play_idle_anim)
 	_idle_state.state_exited.connect(_wait_behaviour.deactivate)
 	
 	# scared
 	_chaotic_running_state.state_entered.connect(_chaotic_running_behaviour.activate)
+	_chaotic_running_state.state_entered.connect(_animation_setter.play_run_anim)
 	_chaotic_running_state.state_exited.connect(_chaotic_running_behaviour.deactivate)
 	
 	_worrying_state.state_entered.connect(_worrying_wait_behaviour.activate)
+	_worrying_state.state_entered.connect(_animation_setter.play_idle_anim)
 	_worrying_state.state_exited.connect(_worrying_wait_behaviour.deactivate)
 	
 	_running_from_danger_state.state_entered.connect(_move_from_danger_behaviour.activate)
+	_running_from_danger_state.state_entered.connect(_animation_setter.play_run_panic_anim)
 	_running_from_danger_state.state_exited.connect(_move_from_danger_behaviour.deactivate)
 
 
