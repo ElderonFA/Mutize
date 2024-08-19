@@ -313,9 +313,11 @@ script = ExtResource("1_ah71e")
 [node name="BreathAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_0ygly")
 volume_db = 10.0
+bus = &"Sfx"
 
 [node name="ScreamAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_74nfu")
+bus = &"Sfx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dopob")
