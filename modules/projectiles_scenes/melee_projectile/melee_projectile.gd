@@ -15,4 +15,8 @@ func setup(rotation: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is DamageableArea2D:
 		area.apply_damage(damage_count)
-		queue_free()
+		_despawn()
+
+
+func _despawn() -> void:
+	queue_free()
