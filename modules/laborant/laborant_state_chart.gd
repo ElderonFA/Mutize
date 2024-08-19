@@ -10,11 +10,13 @@ extends StateChart
 @export var _chaotic_running_behaviour: Behaviour
 @export var _worrying_wait_behaviour: Behaviour
 @export var _move_from_danger_behaviour: Behaviour
+@export var _die_behaviour: Behaviour
 
 @export_group("States")
 @export_subgroup("Activity")
 @export var _inactive_state: StateChartState
 @export var _active_state: StateChartState
+@export var _die_state: StateChartState
 @export_subgroup("Normal")
 @export var _idle_state: StateChartState
 @export var _moving_around_state: StateChartState
@@ -56,6 +58,9 @@ func _ready() -> void:
 	_running_from_danger_state.state_entered.connect(_move_from_danger_behaviour.activate)
 	_running_from_danger_state.state_entered.connect(_animation_setter.play_run_panic_anim)
 	_running_from_danger_state.state_exited.connect(_move_from_danger_behaviour.deactivate)
+	
+	#dead
+	_die_state.state_entered.connect(_animation_setter.play_die_anim)
 
 
 func _on_danger_found(danger: Node2D) -> void:
@@ -64,3 +69,7 @@ func _on_danger_found(danger: Node2D) -> void:
 
 func _on_danger_lost() -> void:
 	send_event("danger_lost")
+
+
+func _on_damageable_area_2d_dead() -> void:
+	send_event("die")# Replace with function body.

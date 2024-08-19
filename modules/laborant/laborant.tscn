@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d1f6dy8fxtqr8"]
+[gd_scene load_steps=33 format=3 uid="uid://d1f6dy8fxtqr8"]
 
 [ext_resource type="Script" path="res://modules/laborant/animation_setter.gd" id="1_ah71e"]
 [ext_resource type="Texture2D" uid="uid://boqiowmvctxnm" path="res://modules/laborant/laborant.png" id="1_by6nc"]
@@ -8,12 +8,15 @@
 [ext_resource type="Script" path="res://modules/wait_behaviour/wait_behaviour.gd" id="3_182pr"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_g4ces"]
 [ext_resource type="Texture2D" uid="uid://c1rye42pxys28" path="res://modules/laborant/laborant_panic.png" id="3_nunii"]
+[ext_resource type="Texture2D" uid="uid://dcn12sm2auncw" path="res://modules/laborant/laborant_dead.png" id="3_ualtu"]
 [ext_resource type="AudioStream" uid="uid://clw0mlx3aj7pu" path="res://modules/laborant/breath.ogg" id="4_0ygly"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2e0th"]
 [ext_resource type="Script" path="res://modules/move_from_object/move_from_object.gd" id="4_uh7yi"]
 [ext_resource type="AudioStream" uid="uid://c1lbk4pfr3c74" path="res://modules/laborant/scared_scream.ogg" id="5_74nfu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_avdl3"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="6_8kpl8"]
 [ext_resource type="Script" path="res://modules/random_state_transition_guard/random_state_transition_guard.gd" id="8_o17co"]
+[ext_resource type="Script" path="res://modules/die_behaviour/die_behaviour.gd" id="11_8twk0"]
 
 [sub_resource type="Animation" id="Animation_2vugw"]
 length = 0.001
@@ -64,6 +67,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_by6nc")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Sprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_kvqjn"]
@@ -253,9 +268,74 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_3grbd"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -28.792), Vector2(-1, -40), Vector2(-1.49012e-08, -7), Vector2(1.42109e-14, -18), Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0797244, -1.55276]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.515625, 0.499222), Vector2(0.555626, 0.53795), Vector2(0.428789, 0.543098)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.552956, 0.552956, 0.552956, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Sprite2D:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ualtu")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkc6a"]
 _data = {
 "RESET": SubResource("Animation_2vugw"),
+"die": SubResource("Animation_3grbd"),
 "idle": SubResource("Animation_kvqjn"),
 "run": SubResource("Animation_ns4rq"),
 "run_panic": SubResource("Animation_htfb1")
@@ -263,6 +343,9 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dopob"]
 radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ox1a"]
+radius = 16.0312
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udehl"]
 radius = 150.0
@@ -319,8 +402,15 @@ bus = &"Sfx"
 stream = ExtResource("5_74nfu")
 bus = &"Sfx"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dopob")
+
+[node name="DamageableArea2D" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("6_8kpl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableArea2D"]
+shape = SubResource("CircleShape2D_4ox1a")
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -339,6 +429,7 @@ monitorable = false
 script = ExtResource("2_fync3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerRadar"]
+visible = false
 shape = SubResource("CircleShape2D_udehl")
 
 [node name="Behaviours" type="Node" parent="."]
@@ -370,7 +461,11 @@ script = ExtResource("4_uh7yi")
 _owner = NodePath("../..")
 _moving_speed = 140.0
 
-[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_danger_radar", "_animation_setter", "_moving_around_behaviour", "_wait_behaviour", "_chaotic_running_behaviour", "_worrying_wait_behaviour", "_move_from_danger_behaviour", "_inactive_state", "_active_state", "_idle_state", "_moving_around_state", "_worrying_state", "_running_from_danger_state", "_chaotic_running_state", "_recovery_after_hit_state", "_dying_state")]
+[node name="Die" type="Node" parent="Behaviours" node_paths=PackedStringArray("behaviours_for_deactivate")]
+script = ExtResource("11_8twk0")
+behaviours_for_deactivate = [NodePath("../MoveAround"), NodePath("../ChaoticRunning"), NodePath("../Wait"), NodePath("../WorryingWait"), NodePath("../MoveFromDanger")]
+
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_danger_radar", "_animation_setter", "_moving_around_behaviour", "_wait_behaviour", "_chaotic_running_behaviour", "_worrying_wait_behaviour", "_move_from_danger_behaviour", "_die_behaviour", "_inactive_state", "_active_state", "_die_state", "_idle_state", "_moving_around_state", "_worrying_state", "_running_from_danger_state", "_chaotic_running_state", "_recovery_after_hit_state", "_dying_state")]
 script = ExtResource("2_71byd")
 _danger_radar = NodePath("../DangerRadar")
 _animation_setter = NodePath("../AnimationPlayer")
@@ -379,15 +474,17 @@ _wait_behaviour = NodePath("../Behaviours/Wait")
 _chaotic_running_behaviour = NodePath("../Behaviours/ChaoticRunning")
 _worrying_wait_behaviour = NodePath("../Behaviours/WorryingWait")
 _move_from_danger_behaviour = NodePath("../Behaviours/MoveFromDanger")
+_die_behaviour = NodePath("../Behaviours/Die")
 _inactive_state = NodePath("RootState/Inactive")
 _active_state = NodePath("RootState/Active")
+_die_state = NodePath("RootState/Active/Die")
 _idle_state = NodePath("RootState/Active/Normal/Idle")
 _moving_around_state = NodePath("RootState/Active/Normal/MovingAround")
 _worrying_state = NodePath("RootState/Active/Scared/Worrying")
 _running_from_danger_state = NodePath("RootState/Active/Scared/RunningFromDanger")
 _chaotic_running_state = NodePath("RootState/Active/Scared/ChaoticRunning")
 _recovery_after_hit_state = NodePath("RootState/Active/RecoveringAfterHit")
-_dying_state = NodePath("RootState/Active/Dying")
+_dying_state = NodePath("RootState/Active/Die")
 
 [node name="RootState" type="Node" parent="StateChart"]
 script = ExtResource("3_g4ces")
@@ -410,6 +507,12 @@ initial_state = NodePath("Scared")
 script = ExtResource("5_avdl3")
 to = NodePath("../../Inactive")
 event = &"deactivated"
+delay_in_seconds = "0.0"
+
+[node name="ToDying" type="Node" parent="StateChart/RootState/Active"]
+script = ExtResource("5_avdl3")
+to = NodePath("../Die")
+event = &"die"
 delay_in_seconds = "0.0"
 
 [node name="Normal" type="Node" parent="StateChart/RootState/Active"]
@@ -494,9 +597,10 @@ to = NodePath("../../Scared")
 event = &"recovery_after_hit_ended"
 delay_in_seconds = "0.0"
 
-[node name="Dying" type="Node" parent="StateChart/RootState/Active"]
+[node name="Die" type="Node" parent="StateChart/RootState/Active"]
 script = ExtResource("4_2e0th")
 
+[connection signal="dead" from="DamageableArea2D" to="StateChart" method="_on_damageable_area_2d_dead"]
 [connection signal="danger_found" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]
 [connection signal="danger_lost" from="DangerRadar" to="Behaviours/MoveFromDanger" method="clear_subject"]
 [connection signal="nearest_danger_changed" from="DangerRadar" to="Behaviours/MoveFromDanger" method="set_subject"]
