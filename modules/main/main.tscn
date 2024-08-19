@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=28 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://btufx2jfj0iu8" path="res://modules/main_room/double_door_left/double_door_left_door_right.png" id="7_pd17a"]
 [ext_resource type="Texture2D" uid="uid://b6oe3lrvpxt3c" path="res://modules/main_room/double_door_left/double_door_left_door_left.png" id="8_jgtof"]
 [ext_resource type="PackedScene" uid="uid://d1f6dy8fxtqr8" path="res://modules/laborant/laborant.tscn" id="12_i0nsn"]
+[ext_resource type="PackedScene" uid="uid://8kjjiy32kdwf" path="res://modules/science_capsule/science_capsule.tscn" id="13_6wh7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sct0e"]
 size = Vector2(925, 99.2857)
@@ -387,7 +388,7 @@ libraries = {
 
 [node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
-position = Vector2(1136, 341)
+position = Vector2(1136, 277)
 scale = Vector2(-1, 1)
 texture = ExtResource("6_2c0w7")
 
@@ -412,7 +413,7 @@ libraries = {
 
 [node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
-position = Vector2(43, 343)
+position = Vector2(43, 279)
 texture = ExtResource("6_2c0w7")
 
 [node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
@@ -453,3 +454,15 @@ position = Vector2(722, 277)
 
 [node name="Laborant4" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
 position = Vector2(708, 464)
+
+[node name="Environment" type="Node2D" parent="GameWorld"]
+position = Vector2(0, -7)
+
+[node name="ScienceCapsule" parent="GameWorld/Environment" instance=ExtResource("13_6wh7q")]
+position = Vector2(209, 560)
+
+[node name="ScienceCapsule2" parent="GameWorld/Environment" instance=ExtResource("13_6wh7q")]
+position = Vector2(581, 587)
+
+[node name="ScienceCapsule3" parent="GameWorld/Environment" instance=ExtResource("13_6wh7q")]
+position = Vector2(974, 559)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://8kjjiy32kdwf"]
+
+[ext_resource type="Texture2D" uid="uid://c5wvdkk22lr0y" path="res://modules/science_capsule/science_capsule.png" id="1_20syo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5pgc"]
+radius = 26.0192
+
+[node name="ScienceCapsule" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1.00003, -47.9999)
+scale = Vector2(1.25439, 1.25439)
+texture = ExtResource("1_20syo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.96046e-08, -10)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_p5pgc")
