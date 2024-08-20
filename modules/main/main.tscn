@@ -118,91 +118,6 @@ _data = {
 "open": SubResource("Animation_7sdb1")
 }
 
-[sub_resource type="Animation" id="Animation_djflj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7, -1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("indicator:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.00136e-05, 1.00136e-05)]
-}
-
-[sub_resource type="Animation" id="Animation_re784"]
-resource_name = "open"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 7), Vector2(5, 9), Vector2(5, 9), Vector2(-4, 22)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(7, -1), Vector2(14, -2), Vector2(14, -2), Vector2(18, -11)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("indicator:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
-_data = {
-"RESET": SubResource("Animation_djflj"),
-"open": SubResource("Animation_re784")
-}
-
 [sub_resource type="Animation" id="Animation_4m63b"]
 length = 0.001
 tracks/0/type = "value"
@@ -288,152 +203,255 @@ _data = {
 "open": SubResource("Animation_ys7aq")
 }
 
+[sub_resource type="Animation" id="Animation_djflj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_re784"]
+resource_name = "open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 7), Vector2(5, 9), Vector2(5, 9), Vector2(-4, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.8, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7, -1), Vector2(14, -2), Vector2(14, -2), Vector2(18, -11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
+_data = {
+"RESET": SubResource("Animation_djflj"),
+"open": SubResource("Animation_re784")
+}
+
 [node name="Main" type="Node"]
 
 [node name="GameWorld" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="RoomVisual" type="Node2D" parent="GameWorld"]
+y_sort_enabled = true
 
 [node name="FloorTile" type="Sprite2D" parent="GameWorld/RoomVisual"]
+z_index = -2
 texture_repeat = 2
 position = Vector2(580, 321)
 texture = ExtResource("1_p8wyv")
 region_enabled = true
 region_rect = Rect2(0, 0, 1200, 675.82)
 
-[node name="WallTile" type="Sprite2D" parent="GameWorld/RoomVisual"]
-texture_repeat = 2
+[node name="TopWall" type="StaticBody2D" parent="GameWorld/RoomVisual"]
+z_index = -1
 position = Vector2(579, 24)
 scale = Vector2(1.4, 1.4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GameWorld/RoomVisual/TopWall"]
+texture_repeat = 2
+scale = Vector2(1, 1)
 texture = ExtResource("2_1coly")
 region_enabled = true
 region_rect = Rect2(0, 0, 926.57, 100)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/WallTile"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/WallTile/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/TopWall"]
 position = Vector2(1.07144, 1.78571)
 shape = SubResource("RectangleShape2D_sct0e")
 
-[node name="UpWallLeft" type="Sprite2D" parent="GameWorld/RoomVisual"]
-texture_repeat = 2
+[node name="LeftWall" type="StaticBody2D" parent="GameWorld/RoomVisual"]
+z_index = -1
 position = Vector2(16, 333)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GameWorld/RoomVisual/LeftWall"]
+texture_repeat = 2
 texture = ExtResource("6_pfh5n")
 region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 700)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallLeft"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallLeft/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/LeftWall"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4emp6")
 
-[node name="UpWallRight" type="Sprite2D" parent="GameWorld/RoomVisual"]
-texture_repeat = 2
+[node name="RightWall" type="StaticBody2D" parent="GameWorld/RoomVisual"]
+z_index = -1
 position = Vector2(1159, 320)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GameWorld/RoomVisual/RightWall"]
+texture_repeat = 2
 texture = ExtResource("6_pfh5n")
 region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 700)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallRight"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallRight/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/RightWall"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4emp6")
 
-[node name="UpWallDown" type="Sprite2D" parent="GameWorld/RoomVisual"]
-texture_repeat = 2
+[node name="BottomWall" type="StaticBody2D" parent="GameWorld/RoomVisual"]
+z_index = -1
 position = Vector2(583, 632)
 rotation = -1.57079
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GameWorld/RoomVisual/BottomWall"]
+texture_repeat = 2
 texture = ExtResource("6_pfh5n")
 region_enabled = true
 region_rect = Rect2(0, 0, 32.53, 1200)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/RoomVisual/UpWallDown"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/UpWallDown/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/RoomVisual/BottomWall"]
 position = Vector2(-7.50061, 0.5)
 shape = SubResource("RectangleShape2D_d2oeg")
 
-[node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual"]
-position = Vector2(579, 59)
+[node name="DoorTop" type="Node2D" parent="GameWorld/RoomVisual"]
+position = Vector2(576, 104)
+
+[node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop"]
+position = Vector2(-1, -47)
 scale = Vector2(0.828548, 0.828548)
 texture = ExtResource("4_00mhm")
 
-[node name="RightDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+[node name="RightDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop/DoubleDoorTop"]
 position = Vector2(-17.51, 12.47)
 scale = Vector2(-1, 1)
 texture = ExtResource("5_dg1py")
 
-[node name="LeftDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+[node name="LeftDoor" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop/DoubleDoorTop"]
 position = Vector2(20.51, 12.485)
 texture = ExtResource("5_dg1py")
 
-[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop/DoubleDoorTop"]
 position = Vector2(1, -47)
 scale = Vector2(1e-05, -0.896)
 texture = SubResource("GradientTexture2D_af6cr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorTop"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoorTop/DoubleDoorTop"]
 libraries = {
 "": SubResource("AnimationLibrary_x1e4f")
 }
 
-[node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual"]
+[node name="DoorLeft" type="Node2D" parent="GameWorld/RoomVisual"]
+position = Vector2(55, 322)
+
+[node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
-position = Vector2(1136, 277)
-scale = Vector2(-1, 1)
+position = Vector2(-15, -26)
 texture = ExtResource("6_2c0w7")
 
-[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 position = Vector2(0, 7)
 texture = ExtResource("7_pd17a")
 
-[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
+[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 position = Vector2(7, -1)
 texture = ExtResource("8_jgtof")
 
-[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorRight"]
-position = Vector2(5, -45)
-rotation = -0.591657
-scale = Vector2(1.00136e-05, 1.00136e-05)
-texture = SubResource("GradientTexture2D_af6cr")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorRight"]
-libraries = {
-"": SubResource("AnimationLibrary_dyvwg")
-}
-
-[node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual"]
-modulate = Color(0.737193, 0.737193, 0.737193, 1)
-position = Vector2(43, 279)
-texture = ExtResource("6_2c0w7")
-
-[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
-position = Vector2(0, 7)
-texture = ExtResource("7_pd17a")
-
-[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
-position = Vector2(7, -1)
-texture = ExtResource("8_jgtof")
-
-[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 position = Vector2(5, -45)
 rotation = -0.591657
 scale = Vector2(1e-05, -0.512)
 texture = SubResource("GradientTexture2D_af6cr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoubleDoorLeft"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 libraries = {
 "": SubResource("AnimationLibrary_gdmkd")
+}
+
+[node name="DoorRight" type="Node2D" parent="GameWorld/RoomVisual"]
+position = Vector2(1118, 309)
+
+[node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight"]
+modulate = Color(0.737193, 0.737193, 0.737193, 1)
+position = Vector2(16, -26)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("6_2c0w7")
+
+[node name="DoubleDoorLeftDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight/DoubleDoorRight"]
+position = Vector2(0, 7)
+texture = ExtResource("7_pd17a")
+
+[node name="DoubleDoorLeftDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight/DoubleDoorRight"]
+position = Vector2(7, -1)
+texture = ExtResource("8_jgtof")
+
+[node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight/DoubleDoorRight"]
+position = Vector2(5, -45)
+rotation = -0.591657
+scale = Vector2(1.00136e-05, 1.00136e-05)
+texture = SubResource("GradientTexture2D_af6cr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoorRight/DoubleDoorRight"]
+libraries = {
+"": SubResource("AnimationLibrary_dyvwg")
 }
 
 [node name="MainCharacter" parent="GameWorld" instance=ExtResource("1_qcywt")]
@@ -443,9 +461,10 @@ script = ExtResource("2_7hatb")
 _projectiles_signals = ExtResource("3_hhqcl")
 
 [node name="Enemies" type="Node2D" parent="GameWorld"]
+y_sort_enabled = true
 
 [node name="Laborant" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
-position = Vector2(402, 337)
+position = Vector2(314, 306)
 
 [node name="Laborant2" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
 position = Vector2(852, 416)
@@ -457,6 +476,7 @@ position = Vector2(722, 277)
 position = Vector2(708, 464)
 
 [node name="Environment" type="Node2D" parent="GameWorld"]
+y_sort_enabled = true
 position = Vector2(0, -7)
 
 [node name="ScienceCapsule" parent="GameWorld/Environment" instance=ExtResource("13_6wh7q")]
