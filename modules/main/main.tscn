@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=31 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://modules/projectiles_spawner/projectiles_spawner.gd" id="2_7hatb"]
 [ext_resource type="Resource" uid="uid://dq6achdbn4775" path="res://modules/projectiles_signals/projectiles_signals.tres" id="3_hhqcl"]
 [ext_resource type="Texture2D" uid="uid://ctunicgotcja7" path="res://modules/main_room/double_door_front/double_door_frame.png" id="4_00mhm"]
+[ext_resource type="Script" path="res://modules/door_controller/door_controller.gd" id="4_h6pic"]
+[ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="5_d387g"]
 [ext_resource type="Texture2D" uid="uid://85wwtg5gu61w" path="res://modules/main_room/double_door_front/double_door_one_door.png" id="5_dg1py"]
 [ext_resource type="Texture2D" uid="uid://b8al4s18io0u2" path="res://modules/main_room/double_door_left/double_door_left_frame.png" id="6_2c0w7"]
 [ext_resource type="Texture2D" uid="uid://ccg6ci2v280we" path="res://modules/main_room/up_wall_tile.png" id="6_pfh5n"]
@@ -313,7 +315,6 @@ collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="GameWorld/RoomVisual/TopWall"]
 texture_repeat = 2
-scale = Vector2(1, 1)
 texture = ExtResource("2_1coly")
 region_enabled = true
 region_rect = Rect2(0, 0, 926.57, 100)
@@ -371,8 +372,11 @@ region_rect = Rect2(0, 0, 32.53, 1200)
 position = Vector2(-7.50061, 0.5)
 shape = SubResource("RectangleShape2D_d2oeg")
 
-[node name="DoorTop" type="Node2D" parent="GameWorld/RoomVisual"]
+[node name="DoorTop" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
 position = Vector2(576, 104)
+script = ExtResource("4_h6pic")
+_character_signals = ExtResource("5_d387g")
+_animation_player = NodePath("DoubleDoorTop/AnimationPlayer")
 
 [node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop"]
 position = Vector2(-1, -47)
@@ -398,8 +402,11 @@ libraries = {
 "": SubResource("AnimationLibrary_x1e4f")
 }
 
-[node name="DoorLeft" type="Node2D" parent="GameWorld/RoomVisual"]
+[node name="DoorLeft" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
 position = Vector2(55, 322)
+script = ExtResource("4_h6pic")
+_character_signals = ExtResource("5_d387g")
+_animation_player = NodePath("DoubleDoorLeft/AnimationPlayer")
 
 [node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
@@ -425,8 +432,11 @@ libraries = {
 "": SubResource("AnimationLibrary_gdmkd")
 }
 
-[node name="DoorRight" type="Node2D" parent="GameWorld/RoomVisual"]
+[node name="DoorRight" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
 position = Vector2(1118, 309)
+script = ExtResource("4_h6pic")
+_character_signals = ExtResource("5_d387g")
+_animation_player = NodePath("DoubleDoorRight/AnimationPlayer")
 
 [node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
