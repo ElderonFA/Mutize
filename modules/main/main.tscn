@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b6oe3lrvpxt3c" path="res://modules/main_room/double_door_left/double_door_left_door_left.png" id="8_jgtof"]
 [ext_resource type="PackedScene" uid="uid://d1f6dy8fxtqr8" path="res://modules/laborant/laborant.tscn" id="12_i0nsn"]
 [ext_resource type="PackedScene" uid="uid://8kjjiy32kdwf" path="res://modules/science_capsule/science_capsule.tscn" id="13_6wh7q"]
+[ext_resource type="PackedScene" uid="uid://eohhcsvt0ot1" path="res://modules/guard_enemy/guard_enemy.tscn" id="13_7046w"]
 [ext_resource type="PackedScene" uid="uid://bfjk1bok08aqu" path="res://modules/game_ui/game_ui.tscn" id="14_217hs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sct0e"]
@@ -484,6 +485,9 @@ position = Vector2(722, 277)
 
 [node name="Laborant4" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
 position = Vector2(708, 464)
+
+[node name="GuardEnemy" parent="GameWorld/Enemies" instance=ExtResource("13_7046w")]
+position = Vector2(178, 241)
 
 [node name="Environment" type="Node2D" parent="GameWorld"]
 y_sort_enabled = true

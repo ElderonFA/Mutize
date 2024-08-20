@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dk8el1r17snrl"]
+[gd_scene load_steps=24 format=3 uid="uid://dk8el1r17snrl"]
 
 [ext_resource type="Script" path="res://modules/main_character/input_handler.gd" id="1_civdj"]
 [ext_resource type="Script" path="res://modules/main_character/character_state_chart.gd" id="2_betf1"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
 [ext_resource type="Script" path="res://modules/character_evolution/character_evolution.gd" id="8_n644c"]
 [ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="9_3lgim"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="15_hxdc0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afrpk"]
 radius = 94.1913
@@ -225,6 +226,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_a2u4e"]
 radius = 108.332
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjoqq"]
+radius = 50.0
+
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(576, 334)
 scale = Vector2(0.2, 0.2)
@@ -374,6 +378,15 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatingArea"]
 shape = SubResource("CircleShape2D_a2u4e")
+
+[node name="DamageableArea2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("15_hxdc0")
+_max_health = 100000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableArea2D"]
+shape = SubResource("CircleShape2D_rjoqq")
 
 [connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="start_attacking"]
 [connection signal="attack_released" from="InputHandler" to="Behaviours/Attack" method="stop_attacking"]

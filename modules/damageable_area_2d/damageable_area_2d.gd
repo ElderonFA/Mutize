@@ -26,4 +26,4 @@ func apply_damage(amount: float) -> void:
 	if _health == 0:
 		dead.emit()
 		
-	queue_free()
+		queue_free()
