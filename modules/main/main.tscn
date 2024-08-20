@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="5_d387g"]
 [ext_resource type="Texture2D" uid="uid://85wwtg5gu61w" path="res://modules/main_room/double_door_front/double_door_one_door.png" id="5_dg1py"]
 [ext_resource type="Texture2D" uid="uid://b8al4s18io0u2" path="res://modules/main_room/double_door_left/double_door_left_frame.png" id="6_2c0w7"]
+[ext_resource type="Resource" uid="uid://dsewulr73i8ha" path="res://modules/spawner_signals/spawner_signals.tres" id="6_72yqi"]
 [ext_resource type="Texture2D" uid="uid://ccg6ci2v280we" path="res://modules/main_room/up_wall_tile.png" id="6_pfh5n"]
 [ext_resource type="Texture2D" uid="uid://btufx2jfj0iu8" path="res://modules/main_room/double_door_left/double_door_left_door_right.png" id="7_pd17a"]
 [ext_resource type="Texture2D" uid="uid://b6oe3lrvpxt3c" path="res://modules/main_room/double_door_left/double_door_left_door_left.png" id="8_jgtof"]
@@ -116,95 +117,51 @@ tracks/2/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_q72t8"]
+resource_name = "close"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.49167, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-55, 16), Vector2(-19, 16), Vector2(-19, 16), Vector2(-17.51, 12.47)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftDoor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.49167, 0.69167, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(58, 16), Vector2(22, 16), Vector2(22, 16), Vector2(20.51, 12.485)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05), Vector2(2.24658, -0.895835), Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1e4f"]
 _data = {
 "RESET": SubResource("Animation_14hay"),
+"close": SubResource("Animation_q72t8"),
 "open": SubResource("Animation_7sdb1")
-}
-
-[sub_resource type="Animation" id="Animation_4m63b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7, -1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("indicator:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, -0.512)]
-}
-
-[sub_resource type="Animation" id="Animation_ys7aq"]
-resource_name = "open"
-length = 1.5035
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 0.833333, 1, 1.49167),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 7), Vector2(3, 12), Vector2(3, 12), Vector2(-7, 21)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.833333, 1, 1.49167),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(7, -1), Vector2(12, 1), Vector2(12, 1), Vector2(18, -9)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("indicator:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 0.966667, 1.2, 1.43333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05), Vector2(1.28376, -0.511901), Vector2(1e-05, 1e-05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdmkd"]
-_data = {
-"RESET": SubResource("Animation_4m63b"),
-"open": SubResource("Animation_ys7aq")
 }
 
 [sub_resource type="Animation" id="Animation_djflj"]
@@ -286,9 +243,50 @@ tracks/2/keys = {
 "values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_1f4ql"]
+resource_name = "close"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoubleDoorLeftDoorRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, 22), Vector2(5, 9), Vector2(5, 9), Vector2(0, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoubleDoorLeftDoorLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(18, -11), Vector2(14, -2), Vector2(14, -2), Vector2(7, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("indicator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05), Vector2(2.24, -0.8), Vector2(1.00136e-05, 1.00136e-05)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dyvwg"]
 _data = {
 "RESET": SubResource("Animation_djflj"),
+"close": SubResource("Animation_1f4ql"),
 "open": SubResource("Animation_re784")
 }
 
@@ -380,6 +378,7 @@ script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorTop/AnimationPlayer")
 spawn_point = NodePath("DoubleDoorTop/SpawnPoint")
+_spawner_signals = ExtResource("6_72yqi")
 
 [node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop"]
 position = Vector2(-1, -47)
@@ -414,6 +413,7 @@ script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorLeft/AnimationPlayer")
 spawn_point = NodePath("DoubleDoorLeft/SpawnPoint")
+_spawner_signals = ExtResource("6_72yqi")
 
 [node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
@@ -431,12 +431,12 @@ texture = ExtResource("8_jgtof")
 [node name="indicator" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 position = Vector2(5, -45)
 rotation = -0.591657
-scale = Vector2(1e-05, -0.512)
+scale = Vector2(1.00136e-05, 1.00136e-05)
 texture = SubResource("GradientTexture2D_af6cr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
 libraries = {
-"": SubResource("AnimationLibrary_gdmkd")
+"": SubResource("AnimationLibrary_dyvwg")
 }
 
 [node name="SpawnPoint" type="Node2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
@@ -448,6 +448,7 @@ script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorRight/AnimationPlayer")
 spawn_point = NodePath("DoubleDoorRight/SpawnPoint")
+_spawner_signals = ExtResource("6_72yqi")
 
 [node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
@@ -517,6 +518,7 @@ y_sort_enabled = true
 script = ExtResource("16_j31sh")
 _enemy = ExtResource("13_7046w")
 _character_signals = ExtResource("5_d387g")
+_spawner_signals = ExtResource("6_72yqi")
 _wave_timer = NodePath("WaveTimer")
 _spawn_timer = NodePath("SpawnTimer")
 _doors = [NodePath("../RoomVisual/DoorTop"), NodePath("../RoomVisual/DoorLeft"), NodePath("../RoomVisual/DoorRight")]
