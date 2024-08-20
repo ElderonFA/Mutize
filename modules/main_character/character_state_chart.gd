@@ -4,6 +4,7 @@ extends StateChart
 @export_group("Behaviours")
 @export var _run_behaviour: Behaviour
 @export var _attack_behaviour: Behaviour
+@export var _evolve_behaviour: Behaviour
 
 
 @export_group("States")
@@ -23,6 +24,8 @@ func _ready() -> void:
 	
 	_attack_state.state_entered.connect(_on_attack_state_entered)
 	_attack_state.state_exited.connect(_on_attack_state_exited)
+	
+	_evolve_behaviour.activate()
 
 
 func _on_idle_state_entered() -> void:

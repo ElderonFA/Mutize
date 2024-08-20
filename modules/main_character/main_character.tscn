@@ -227,7 +227,7 @@ radius = 108.332
 
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(576, 334)
-scale = Vector2(0.240002, 0.240002)
+scale = Vector2(0.2, 0.2)
 collision_mask = 4
 motion_mode = 1
 
@@ -281,14 +281,16 @@ _character_signals = ExtResource("9_3lgim")
 [node name="Timer" type="Timer" parent="Behaviours/Eat"]
 one_shot = true
 
-[node name="Evolution" type="Node" parent="Behaviours"]
+[node name="Evolution" type="Node" parent="Behaviours" node_paths=PackedStringArray("_main_node_character")]
 script = ExtResource("8_n644c")
 _character_signals = ExtResource("9_3lgim")
+_main_node_character = NodePath("../..")
 
-[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_evolve_behaviour", "_idle_state", "_run_state", "_attack_state")]
 script = ExtResource("2_betf1")
 _run_behaviour = NodePath("../Behaviours/Run")
 _attack_behaviour = NodePath("../Behaviours/Attack")
+_evolve_behaviour = NodePath("../Behaviours/Evolution")
 _idle_state = NodePath("RootState/Alive/Moving/Idle")
 _run_state = NodePath("RootState/Alive/Moving/Run")
 _attack_state = NodePath("RootState/Alive/Attacking")
