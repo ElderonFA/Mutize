@@ -79,6 +79,34 @@ tracks/4/keys = {
 "values": [Vector2(3.77187, 3.60826)]
 }
 
+[sub_resource type="Animation" id="Animation_hmiaa"]
+resource_name = "eating"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainView/Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(0.727273, 7.11111)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainView/Icon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3.77187, 3.60826), Vector2(3.77187, 3.80579), Vector2(3.77187, 3.09763), Vector2(3.77187, 3.60826)]
+}
+
 [sub_resource type="Animation" id="Animation_pxe1b"]
 resource_name = "idle"
 loop_mode = 1
@@ -160,34 +188,6 @@ tracks/2/keys = {
 "values": [0.0, 0.193393, 0.0, -0.21078, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_hmiaa"]
-resource_name = "eating"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainView/Icon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(0.727273, 7.11111)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainView/Icon:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(3.77187, 3.60826), Vector2(3.77187, 3.80579), Vector2(3.77187, 3.09763), Vector2(3.77187, 3.60826)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsur8"]
 _data = {
 "RESET": SubResource("Animation_rawp4"),
@@ -202,6 +202,7 @@ radius = 108.332
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(576, 334)
 scale = Vector2(0.240002, 0.240002)
+collision_mask = 4
 motion_mode = 1
 
 [node name="AttackPoint" type="Node2D" parent="."]
