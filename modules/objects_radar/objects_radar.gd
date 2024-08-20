@@ -1,31 +1,31 @@
-class_name DangerRadar
+class_name ObjectsRadar
 extends Area2D
 
 
-signal danger_found(node: Node2D)
-signal nearest_danger_changed(node: Node2D)
-signal danger_lost
+signal object_found(node: Node2D)
+signal nearest_object_changed(node: Node2D)
+signal object_lost
 
 
 @export var _refresh_delay: float = 0.5
 
 
-var _nearest_danger: Node2D:
-	set(new_nearest_danger):
-		if not _nearest_danger\
-		and new_nearest_danger:
-			danger_found.emit(new_nearest_danger)
+var _nearest_object: Node2D:
+	set(new_nearest_object):
+		if not _nearest_object\
+		and new_nearest_object:
+			object_found.emit(new_nearest_object)
 		
-		if _nearest_danger\
-		and new_nearest_danger\
-		and _nearest_danger != new_nearest_danger:
-			nearest_danger_changed.emit(new_nearest_danger)
+		if _nearest_object\
+		and new_nearest_object\
+		and _nearest_object != new_nearest_object:
+			nearest_object_changed.emit(new_nearest_object)
 		
-		if _nearest_danger\
-		and not new_nearest_danger:
-			danger_lost.emit()
+		if _nearest_object\
+		and not new_nearest_object:
+			object_lost.emit()
 		
-		_nearest_danger = new_nearest_danger
+		_nearest_object = new_nearest_object
 
 
 func _ready() -> void:
@@ -49,8 +49,8 @@ func _create_refresh_timer() -> void:
 
 
 func _refresh() -> void:
-	var new_nearest_danger_distance: float = INF
-	var new_nearest_danger: Node2D
+	var new_nearest_object_distance: float = INF
+	var new_nearest_object: Node2D
 	
 	var overlapping_objects: Array
 	overlapping_objects.append_array(get_overlapping_bodies())
@@ -60,8 +60,8 @@ func _refresh() -> void:
 		var distance_to_object = (near_object.global_position - global_position)\
 			.length()
 		
-		if distance_to_object < new_nearest_danger_distance:
-			new_nearest_danger = near_object
-			new_nearest_danger_distance = distance_to_object
+		if distance_to_object < new_nearest_object_distance:
+			new_nearest_object = near_object
+			new_nearest_object_distance = distance_to_object
 	
-	_nearest_danger = new_nearest_danger
+	_nearest_object = new_nearest_object

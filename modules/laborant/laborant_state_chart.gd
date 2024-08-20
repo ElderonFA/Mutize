@@ -1,7 +1,7 @@
 extends StateChart
 
 
-@export var _danger_radar: DangerRadar
+@export var _danger_radar: ObjectsRadar
 @export var _animation_setter: AnimationSetter
 
 @export_group("Behaviours")
@@ -33,8 +33,8 @@ func _ready() -> void:
 	super._ready()
 	
 	# behaviours
-	_danger_radar.danger_found.connect(_on_danger_found)
-	_danger_radar.danger_lost.connect(_on_danger_lost)
+	_danger_radar.object_found.connect(_on_danger_found)
+	_danger_radar.object_lost.connect(_on_danger_lost)
 	
 	# states
 	# normal
