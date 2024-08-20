@@ -10,7 +10,17 @@ signal eat_pressed
 signal eat_released
 
 
+var _is_active: bool = true
+
+
+func deactivate() -> void:
+	_is_active = false
+
+
 func _input(event: InputEvent) -> void:
+	if not _is_active:
+		return
+	
 	if event.is_action_pressed("character_left")\
 	or event.is_action_pressed("character_right")\
 	or event.is_action_pressed("character_up")\

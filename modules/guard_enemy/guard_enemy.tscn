@@ -482,7 +482,6 @@ scale = Vector2(0.515625, 0.499222)
 texture = ExtResource("1_jyetp")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Visuals/Sprite2D"]
-scale = Vector2(1, 1)
 texture = ExtResource("8_767bt")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -648,7 +647,7 @@ script = ExtResource("15_eh375")
 position = Vector2(0, -8)
 collision_layer = 2
 script = ExtResource("18_dfop7")
-essence_count = 25
+essence_count = 10
 time_to_eat = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CorpseArea"]

@@ -499,9 +499,6 @@ position = Vector2(722, 277)
 [node name="Laborant4" parent="GameWorld/Enemies" instance=ExtResource("12_i0nsn")]
 position = Vector2(708, 464)
 
-[node name="GuardEnemy" parent="GameWorld/Enemies" instance=ExtResource("13_7046w")]
-position = Vector2(178, 241)
-
 [node name="Environment" type="Node2D" parent="GameWorld"]
 y_sort_enabled = true
 position = Vector2(0, -7)

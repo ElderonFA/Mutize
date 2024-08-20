@@ -230,13 +230,14 @@ radius = 108.332
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjoqq"]
 radius = 50.0
 
-[node name="MainCharacter" type="CharacterBody2D"]
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_damageable_area")]
 position = Vector2(576, 334)
 scale = Vector2(0.2, 0.2)
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_20ydd")
 _character_signals = ExtResource("9_3lgim")
+_damageable_area = NodePath("DamageableArea2D")
 
 [node name="AttackPoint" type="Node2D" parent="."]
 position = Vector2(0, -50)
@@ -402,4 +403,4 @@ shape = SubResource("CircleShape2D_rjoqq")
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Run" to="AnimationPlayer" method="play" binds= ["run"]]
 [connection signal="area_entered" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_entered"]
 [connection signal="area_exited" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_exited"]
-[connection signal="dead" from="DamageableArea2D" to="." method="die"]
+[connection signal="dead" from="DamageableArea2D" to="InputHandler" method="deactivate"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfjk1bok08aqu"]
+[gd_scene load_steps=10 format=3 uid="uid://bfjk1bok08aqu"]
 
 [ext_resource type="Texture2D" uid="uid://c8kqhhdo0w7sg" path="res://modules/game_ui/intestine.png" id="1_1dn8k"]
 [ext_resource type="Script" path="res://modules/game_ui/evolution_progress_bar_updater.gd" id="2_dpjrc"]
 [ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="3_iqn6n"]
 [ext_resource type="PackedScene" uid="uid://du68tcyknse2p" path="res://modules/game_over_screen/game_over_screen.tscn" id="4_t8gm3"]
+[ext_resource type="Texture2D" uid="uid://b3fvgfwciog4q" path="res://modules/game_ui/heart.png" id="5_6w44n"]
+[ext_resource type="Script" path="res://modules/game_ui/health_bar.gd" id="6_fdfyk"]
 
 [sub_resource type="Animation" id="Animation_mivd7"]
 length = 0.001
@@ -85,3 +87,18 @@ libraries = {
 [node name="GameOverScreen" parent="." instance=ExtResource("4_t8gm3")]
 visible = false
 layout_mode = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = 79.0
+offset_bottom = 80.0
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("5_6w44n")
+texture_progress = ExtResource("5_6w44n")
+tint_under = Color(0.162066, 0.162066, 0.162066, 1)
+script = ExtResource("6_fdfyk")
+_character_signals = ExtResource("3_iqn6n")
