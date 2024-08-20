@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://eohhcsvt0ot1"]
+[gd_scene load_steps=36 format=3 uid="uid://eohhcsvt0ot1"]
 
 [ext_resource type="Texture2D" uid="uid://boqiowmvctxnm" path="res://modules/laborant/laborant.png" id="1_jyetp"]
 [ext_resource type="Texture2D" uid="uid://dcn12sm2auncw" path="res://modules/laborant/laborant_dead.png" id="2_dsnca"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://clw0mlx3aj7pu" path="res://modules/laborant/breath.ogg" id="5_c5bll"]
 [ext_resource type="AudioStream" uid="uid://c1lbk4pfr3c74" path="res://modules/laborant/scared_scream.ogg" id="6_4qfy7"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="7_f214j"]
+[ext_resource type="Texture2D" uid="uid://djf05q00fsxrm" path="res://modules/guard_enemy/security.png" id="8_767bt"]
 [ext_resource type="Script" path="res://modules/objects_radar/objects_radar.gd" id="8_vfjk7"]
 [ext_resource type="Script" path="res://modules/moving_around_behaviour/moving_around_behaviour.gd" id="9_7y0si"]
 [ext_resource type="Script" path="res://modules/wait_behaviour/wait_behaviour.gd" id="10_gv41p"]
@@ -443,7 +444,6 @@ radius = 21.0
 height = 82.0
 
 [node name="GuardEnemy" type="CharacterBody2D"]
-modulate = Color(0.69498, 0.000383506, 0.699571, 1)
 collision_layer = 2
 collision_mask = 4
 
@@ -476,9 +476,14 @@ shape = SubResource("CircleShape2D_4ox1a")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -28.792)
 scale = Vector2(0.515625, 0.499222)
 texture = ExtResource("1_jyetp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Visuals/Sprite2D"]
+scale = Vector2(1, 1)
+texture = ExtResource("8_767bt")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(50, 0)
