@@ -22,6 +22,8 @@ func evolve():
 	var new_scale = Vector2(_main_node_character.scale.x + _grow_coef, _main_node_character.scale.y + _grow_coef)
 	_main_node_character.scale = new_scale
 	
+	_character_signals.grow_coef_chaged.emit(_main_node_character.scale.x)
+	
 	#_spite_renderer.texture = _sprite_first_level
 	
 	print("EVOLVE!")

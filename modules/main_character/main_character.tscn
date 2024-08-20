@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://dk8el1r17snrl"]
+[gd_scene load_steps=25 format=3 uid="uid://dk8el1r17snrl"]
 
+[ext_resource type="Script" path="res://modules/main_character/main_character.gd" id="1_20ydd"]
 [ext_resource type="Script" path="res://modules/main_character/input_handler.gd" id="1_civdj"]
 [ext_resource type="Script" path="res://modules/main_character/character_state_chart.gd" id="2_betf1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_1ut4f"]
@@ -234,6 +235,8 @@ position = Vector2(576, 334)
 scale = Vector2(0.2, 0.2)
 collision_mask = 4
 motion_mode = 1
+script = ExtResource("1_20ydd")
+_character_signals = ExtResource("9_3lgim")
 
 [node name="AttackPoint" type="Node2D" parent="."]
 position = Vector2(0, -50)
@@ -383,7 +386,7 @@ shape = SubResource("CircleShape2D_a2u4e")
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("15_hxdc0")
-_max_health = 100000.0
+_max_health = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableArea2D"]
 shape = SubResource("CircleShape2D_rjoqq")
@@ -399,3 +402,4 @@ shape = SubResource("CircleShape2D_rjoqq")
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Run" to="AnimationPlayer" method="play" binds= ["run"]]
 [connection signal="area_entered" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_entered"]
 [connection signal="area_exited" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_exited"]
+[connection signal="dead" from="DamageableArea2D" to="." method="die"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfjk1bok08aqu"]
+[gd_scene load_steps=8 format=3 uid="uid://bfjk1bok08aqu"]
 
 [ext_resource type="Texture2D" uid="uid://c8kqhhdo0w7sg" path="res://modules/game_ui/intestine.png" id="1_1dn8k"]
 [ext_resource type="Script" path="res://modules/game_ui/evolution_progress_bar_updater.gd" id="2_dpjrc"]
 [ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="3_iqn6n"]
+[ext_resource type="PackedScene" uid="uid://du68tcyknse2p" path="res://modules/game_over_screen/game_over_screen.tscn" id="4_t8gm3"]
 
 [sub_resource type="Animation" id="Animation_mivd7"]
 length = 0.001
@@ -80,3 +81,7 @@ _animation_player = NodePath("AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_1o7uo")
 }
+
+[node name="GameOverScreen" parent="." instance=ExtResource("4_t8gm3")]
+visible = false
+layout_mode = 1

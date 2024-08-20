@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://du68tcyknse2p"]
+
+[ext_resource type="Script" path="res://modules/game_over_screen/game_over_screen.gd" id="1_1aerr"]
+[ext_resource type="Script" path="res://modules/game_over_screen/result.gd" id="1_7haf6"]
+[ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="2_2vbfn"]
+[ext_resource type="Script" path="res://modules/game_over_screen/restart_game.gd" id="4_0k71m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tumrv"]
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8vc3"]
+font_size = 24
+
+[node name="GameOverScreen" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1aerr")
+_character_signals = ExtResource("2_2vbfn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOver" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_tumrv")
+horizontal_alignment = 1
+
+[node name="Result" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "You have grown by 0"
+label_settings = SubResource("LabelSettings_m8vc3")
+horizontal_alignment = 1
+script = ExtResource("1_7haf6")
+_character_signals = ExtResource("2_2vbfn")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="RestartGame" type="Button" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Play again!"
+script = ExtResource("4_0k71m")

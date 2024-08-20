@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=32 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
