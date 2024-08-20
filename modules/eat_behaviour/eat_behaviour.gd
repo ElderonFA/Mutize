@@ -13,6 +13,8 @@ var _current_corpse: Corpse
 
 func start_eating() -> void:
 	if _current_corpse == null:
+		_eating_timer.stop()
+		_state_chart.send_event("eating_ended")
 		return
 		
 	_animation_player.play("eating")
@@ -43,6 +45,9 @@ func _on_eating_area_area_exited(area: Area2D) -> void:
 
 #when corpse was eaten
 func _on_timer_timeout() -> void:
+	if _current_corpse == null:
+		return
+	
 	_character_signals.body_eaten.emit(_current_corpse.essence_count)
 	
 	_current_corpse.destroy_corpse()
