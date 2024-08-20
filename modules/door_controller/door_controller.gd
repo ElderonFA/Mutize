@@ -1,8 +1,10 @@
+class_name DoorController
 extends Node2D
 
 
 @export var _character_signals: CharacterSignals
 @export var _animation_player: AnimationPlayer
+@export var spawn_point: Node2D
 
 var is_open = false
 

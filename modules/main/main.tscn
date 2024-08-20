@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cpdqnrnip6wup"]
+[gd_scene load_steps=33 format=3 uid="uid://cpdqnrnip6wup"]
 
 [ext_resource type="Texture2D" uid="uid://c5txml2moh858" path="res://modules/main_room/floor_tile.png" id="1_p8wyv"]
 [ext_resource type="PackedScene" uid="uid://dk8el1r17snrl" path="res://modules/main_character/main_character.tscn" id="1_qcywt"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://8kjjiy32kdwf" path="res://modules/science_capsule/science_capsule.tscn" id="13_6wh7q"]
 [ext_resource type="PackedScene" uid="uid://eohhcsvt0ot1" path="res://modules/guard_enemy/guard_enemy.tscn" id="13_7046w"]
 [ext_resource type="PackedScene" uid="uid://bfjk1bok08aqu" path="res://modules/game_ui/game_ui.tscn" id="14_217hs"]
+[ext_resource type="Script" path="res://modules/enemies_spawner/enemies_spawner.gd" id="16_j31sh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sct0e"]
 size = Vector2(925, 99.2857)
@@ -373,11 +374,12 @@ region_rect = Rect2(0, 0, 32.53, 1200)
 position = Vector2(-7.50061, 0.5)
 shape = SubResource("RectangleShape2D_d2oeg")
 
-[node name="DoorTop" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
+[node name="DoorTop" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player", "spawn_point")]
 position = Vector2(576, 104)
 script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorTop/AnimationPlayer")
+spawn_point = NodePath("DoubleDoorTop/SpawnPoint")
 
 [node name="DoubleDoorTop" type="Sprite2D" parent="GameWorld/RoomVisual/DoorTop"]
 position = Vector2(-1, -47)
@@ -403,11 +405,15 @@ libraries = {
 "": SubResource("AnimationLibrary_x1e4f")
 }
 
-[node name="DoorLeft" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
+[node name="SpawnPoint" type="Node2D" parent="GameWorld/RoomVisual/DoorTop/DoubleDoorTop"]
+position = Vector2(0, 78.4505)
+
+[node name="DoorLeft" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player", "spawn_point")]
 position = Vector2(55, 322)
 script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorLeft/AnimationPlayer")
+spawn_point = NodePath("DoubleDoorLeft/SpawnPoint")
 
 [node name="DoubleDoorLeft" type="Sprite2D" parent="GameWorld/RoomVisual/DoorLeft"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
@@ -433,11 +439,15 @@ libraries = {
 "": SubResource("AnimationLibrary_gdmkd")
 }
 
-[node name="DoorRight" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player")]
+[node name="SpawnPoint" type="Node2D" parent="GameWorld/RoomVisual/DoorLeft/DoubleDoorLeft"]
+position = Vector2(33, 37)
+
+[node name="DoorRight" type="Node2D" parent="GameWorld/RoomVisual" node_paths=PackedStringArray("_animation_player", "spawn_point")]
 position = Vector2(1118, 309)
 script = ExtResource("4_h6pic")
 _character_signals = ExtResource("5_d387g")
 _animation_player = NodePath("DoubleDoorRight/AnimationPlayer")
+spawn_point = NodePath("DoubleDoorRight/SpawnPoint")
 
 [node name="DoubleDoorRight" type="Sprite2D" parent="GameWorld/RoomVisual/DoorRight"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
@@ -464,6 +474,9 @@ texture = SubResource("GradientTexture2D_af6cr")
 libraries = {
 "": SubResource("AnimationLibrary_dyvwg")
 }
+
+[node name="SpawnPoint" type="Node2D" parent="GameWorld/RoomVisual/DoorRight/DoubleDoorRight"]
+position = Vector2(36.0001, 37.9999)
 
 [node name="MainCharacter" parent="GameWorld" instance=ExtResource("1_qcywt")]
 
@@ -502,4 +515,21 @@ position = Vector2(581, 587)
 [node name="ScienceCapsule3" parent="GameWorld/Environment" instance=ExtResource("13_6wh7q")]
 position = Vector2(974, 559)
 
+[node name="EnemiesSpawner" type="Node2D" parent="GameWorld" node_paths=PackedStringArray("_wave_timer", "_spawn_timer", "_doors")]
+script = ExtResource("16_j31sh")
+_enemy = ExtResource("13_7046w")
+_character_signals = ExtResource("5_d387g")
+_wave_timer = NodePath("WaveTimer")
+_spawn_timer = NodePath("SpawnTimer")
+_doors = [NodePath("../RoomVisual/DoorTop"), NodePath("../RoomVisual/DoorLeft"), NodePath("../RoomVisual/DoorRight")]
+
+[node name="WaveTimer" type="Timer" parent="GameWorld/EnemiesSpawner"]
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="GameWorld/EnemiesSpawner"]
+one_shot = true
+
 [node name="GameUI" parent="." instance=ExtResource("14_217hs")]
+
+[connection signal="timeout" from="GameWorld/EnemiesSpawner/WaveTimer" to="GameWorld/EnemiesSpawner" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="GameWorld/EnemiesSpawner/SpawnTimer" to="GameWorld/EnemiesSpawner" method="_on_spawn_timer_timeout"]
