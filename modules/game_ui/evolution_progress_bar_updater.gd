@@ -17,5 +17,5 @@ func get_essence(essence_count: int):
 
 
 func after_show_is_full_anim():
-	_character_signals.has_essence_for_evolve.emit()
+	_character_signals.evolving_requested.emit()
 	value = 0

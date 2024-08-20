@@ -6,7 +6,7 @@ extends Behaviour
 
 
 func _on_behaviour_activated() -> void:
-	_character_signals.has_essence_for_evolve.connect(evolve)
+	_character_signals.evolving_requested.connect(evolve)
 
 
 func evolve():
