@@ -513,6 +513,7 @@ position = Vector2(581, 587)
 position = Vector2(974, 559)
 
 [node name="EnemiesSpawner" type="Node2D" parent="GameWorld" node_paths=PackedStringArray("_wave_timer", "_spawn_timer", "_doors")]
+y_sort_enabled = true
 script = ExtResource("16_j31sh")
 _enemy = ExtResource("13_7046w")
 _character_signals = ExtResource("5_d387g")
