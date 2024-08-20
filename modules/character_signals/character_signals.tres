@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="CharacterSignals" load_steps=2 format=3 uid="uid://c3tobfmfrqqdk"]
+
+[ext_resource type="Script" path="res://modules/character_signals/character_signals.gd" id="1_kotlh"]
+
+[resource]
+script = ExtResource("1_kotlh")

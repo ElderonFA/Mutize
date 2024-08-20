@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dk8el1r17snrl"]
+[gd_scene load_steps=22 format=3 uid="uid://dk8el1r17snrl"]
 
 [ext_resource type="Script" path="res://modules/main_character/input_handler.gd" id="1_civdj"]
 [ext_resource type="Script" path="res://modules/main_character/character_state_chart.gd" id="2_betf1"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_xtata"]
 [ext_resource type="Script" path="res://modules/eat_behaviour/eat_behaviour.gd" id="6_rrb68"]
 [ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
+[ext_resource type="Script" path="res://modules/character_evolution/character_evolution.gd" id="8_n644c"]
+[ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="9_3lgim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afrpk"]
 radius = 94.1913
@@ -78,6 +80,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(3.77187, 3.60826)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainView/Icon:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_hmiaa"]
 resource_name = "eating"
@@ -89,10 +103,10 @@ tracks/0/path = NodePath("MainView/Icon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.633333, 0.733333, 0.833333, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(0.727273, 7.11111)]
+"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(-6.06052, 24.5868), Vector2(12.1211, 18.0334), Vector2(-6.06052, 24.5868), Vector2(12.1211, 18.0334), Vector2(0.727273, 7.11111)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -101,10 +115,22 @@ tracks/1/path = NodePath("MainView/Icon:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.3, 0.4, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(3.77187, 3.60826), Vector2(3.77187, 3.80579), Vector2(3.77187, 3.09763), Vector2(3.77187, 3.60826)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainView/Icon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.533333, 0.633333, 0.733333, 0.833333, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0840647, 0.140707, 0.0, -0.138315, 0.23911, -0.138315, 0.23911, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_pxe1b"]
@@ -250,9 +276,14 @@ _animation_player = NodePath("../../AnimationPlayer")
 _behaviours_for_onoff = [NodePath("../Run"), NodePath("../Attack")]
 _eating_timer = NodePath("Timer")
 _state_chart = NodePath("../../StateChart")
+_character_signals = ExtResource("9_3lgim")
 
 [node name="Timer" type="Timer" parent="Behaviours/Eat"]
 one_shot = true
+
+[node name="Evolution" type="Node" parent="Behaviours"]
+script = ExtResource("8_n644c")
+_character_signals = ExtResource("9_3lgim")
 
 [node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_idle_state", "_run_state", "_attack_state")]
 script = ExtResource("2_betf1")

@@ -2,6 +2,7 @@ class_name Corpse
 extends Area2D
 
 
+@export var essence_count: int
 @export var time_to_eat: float = 1
 
 var is_active = false

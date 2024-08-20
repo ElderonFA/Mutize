@@ -609,7 +609,8 @@ script = ExtResource("4_2e0th")
 position = Vector2(0, -8)
 collision_layer = 2
 script = ExtResource("18_hoi0s")
-time_to_eat = 3.0
+essence_count = 25
+time_to_eat = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CorpseArea"]
 rotation = -1.57079

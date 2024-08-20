@@ -6,6 +6,8 @@ extends Behaviour
 @export var _eating_timer: Timer
 @export var _state_chart: StateChart
 
+@export var _character_signals: CharacterSignals
+
 var _current_corpse: Corpse
 
 
@@ -41,6 +43,8 @@ func _on_eating_area_area_exited(area: Area2D) -> void:
 
 #when corpse was eaten
 func _on_timer_timeout() -> void:
+	_character_signals.body_eaten.emit(_current_corpse.essence_count)
+	
 	_current_corpse.destroy_corpse()
 	_state_chart.send_event("eating_ended")
 	_animation_player.play("idle")
