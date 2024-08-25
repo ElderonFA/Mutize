@@ -278,13 +278,14 @@ _attack_point = NodePath("../../AttackPoint")
 _attack_spawn_distance = 50.0
 _attack_delay = 0.2
 
-[node name="Eat" type="Node" parent="Behaviours" node_paths=PackedStringArray("_animation_player", "_behaviours_for_onoff", "_eating_timer", "_state_chart")]
+[node name="Eat" type="Node" parent="Behaviours" node_paths=PackedStringArray("_animation_player", "_eating_area", "_eating_timer", "_state_chart", "_behaviours_for_onoff")]
 script = ExtResource("6_rrb68")
 _animation_player = NodePath("../../AnimationPlayer")
-_behaviours_for_onoff = [NodePath("../Run"), NodePath("../Attack")]
+_eating_area = NodePath("../../EatingArea")
 _eating_timer = NodePath("Timer")
 _state_chart = NodePath("../../StateChart")
 _character_signals = ExtResource("9_3lgim")
+_behaviours_for_onoff = [NodePath("../Run"), NodePath("../Attack")]
 
 [node name="Timer" type="Timer" parent="Behaviours/Eat"]
 one_shot = true
@@ -401,6 +402,4 @@ shape = SubResource("CircleShape2D_rjoqq")
 [connection signal="timeout" from="Behaviours/Eat/Timer" to="Behaviours/Eat" method="_on_timer_timeout"]
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Idle" to="AnimationPlayer" method="play" binds= ["idle"]]
 [connection signal="state_entered" from="StateChart/RootState/Alive/Moving/Run" to="AnimationPlayer" method="play" binds= ["run"]]
-[connection signal="area_entered" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_entered"]
-[connection signal="area_exited" from="EatingArea" to="Behaviours/Eat" method="_on_eating_area_area_exited"]
 [connection signal="dead" from="DamageableArea2D" to="InputHandler" method="deactivate"]
