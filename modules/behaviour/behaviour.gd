@@ -15,12 +15,10 @@ var _is_active: bool:
 
 func activate() -> void:
 	_is_active = true
-	_on_behaviour_activated()
 
 
 func deactivate() -> void:
 	_is_active = false
-	_on_behaviour_deactivated()
 
 
 func _process(delta: float) -> void:
