@@ -4,6 +4,7 @@ extends StateChart
 @export_group("Behaviours")
 @export var _run_behaviour: Behaviour
 @export var _attack_behaviour: Behaviour
+@export var _eating_behaviour: Behaviour
 @export var _evolve_behaviour: Behaviour
 
 
@@ -11,6 +12,7 @@ extends StateChart
 @export var _idle_state: StateChartState
 @export var _run_state: StateChartState
 @export var _attack_state: StateChartState
+@export var _eating_state: StateChartState
 
 
 func _ready() -> void:
@@ -24,6 +26,9 @@ func _ready() -> void:
 	
 	_attack_state.state_entered.connect(_on_attack_state_entered)
 	_attack_state.state_exited.connect(_on_attack_state_exited)
+	
+	_eating_state.state_entered.connect(_on_eating_state_entered)
+	_eating_state.state_exited.connect(_on_eating_state_exited)
 	
 	_evolve_behaviour.activate()
 
@@ -51,3 +56,9 @@ func _on_attack_state_entered() -> void:
 	
 func _on_attack_state_exited() -> void:
 	_attack_behaviour.deactivate()
+
+func _on_eating_state_entered() -> void:
+	_eating_behaviour.activate()
+	
+func _on_eating_state_exited() -> void:
+	_eating_behaviour.deactivate()

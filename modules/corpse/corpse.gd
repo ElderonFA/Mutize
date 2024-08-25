@@ -15,4 +15,4 @@ func _on_damageable_area_2d_dead() -> void:
 	_set_corpse_is_active()
 
 func destroy_corpse() -> void:
-	get_parent().queue_free()
+	get_parent().free()

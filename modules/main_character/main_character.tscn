@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cu67exmq2qk7x" path="res://modules/projectiles_scenes/melee_projectile/melee_projectile.tscn" id="4_xkuae"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_xidmc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_xtata"]
-[ext_resource type="Script" path="res://modules/eat_behaviour/eat_behaviour.gd" id="6_rrb68"]
+[ext_resource type="Script" path="res://modules/eat_behaviour/eating_behaviour.gd" id="6_rrb68"]
 [ext_resource type="Texture2D" uid="uid://cpjle1tpdqard" path="res://modules/main_character/small_mutant.png" id="7_1ir1p"]
 [ext_resource type="Script" path="res://modules/character_evolution/character_evolution.gd" id="8_n644c"]
 [ext_resource type="Resource" uid="uid://c3tobfmfrqqdk" path="res://modules/character_signals/character_signals.tres" id="9_3lgim"]
@@ -259,14 +259,16 @@ script = ExtResource("8_n644c")
 _character_signals = ExtResource("9_3lgim")
 _main_node_character = NodePath("../..")
 
-[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_evolve_behaviour", "_idle_state", "_run_state", "_attack_state")]
+[node name="StateChart" type="Node" parent="." node_paths=PackedStringArray("_run_behaviour", "_attack_behaviour", "_eating_behaviour", "_evolve_behaviour", "_idle_state", "_run_state", "_attack_state", "_eating_state")]
 script = ExtResource("2_betf1")
 _run_behaviour = NodePath("../Behaviours/Run")
 _attack_behaviour = NodePath("../Behaviours/Attack")
+_eating_behaviour = NodePath("../Behaviours/Eat")
 _evolve_behaviour = NodePath("../Behaviours/Evolution")
 _idle_state = NodePath("RootState/Alive/Moving/Idle")
 _run_state = NodePath("RootState/Alive/Moving/Run")
 _attack_state = NodePath("RootState/Alive/Attacking")
+_eating_state = NodePath("RootState/Alive/Moving/Eating")
 
 [node name="RootState" type="Node" parent="StateChart"]
 script = ExtResource("3_1ut4f")
@@ -359,8 +361,8 @@ shape = SubResource("CircleShape2D_rjoqq")
 
 [connection signal="attack_pressed" from="InputHandler" to="Behaviours/Attack" method="start_attacking"]
 [connection signal="attack_released" from="InputHandler" to="Behaviours/Attack" method="stop_attacking"]
-[connection signal="eat_pressed" from="InputHandler" to="Behaviours/Eat" method="_on_input_handler_eat_pressed"]
-[connection signal="eat_released" from="InputHandler" to="Behaviours/Eat" method="_on_input_handler_eat_released"]
+[connection signal="eat_pressed" from="InputHandler" to="StateChart" method="send_event" binds= ["eating_input_pressed"]]
+[connection signal="eat_released" from="InputHandler" to="StateChart" method="send_event" binds= ["eating_ended"]]
 [connection signal="moving_pressed" from="InputHandler" to="StateChart" method="send_event" binds= ["moving_input_pressed"]]
 [connection signal="moving_ended" from="Behaviours/Run" to="StateChart" method="send_event" binds= ["moving_ended"]]
 [connection signal="timeout" from="Behaviours/Eat/Timer" to="Behaviours/Eat" method="_on_timer_timeout"]
