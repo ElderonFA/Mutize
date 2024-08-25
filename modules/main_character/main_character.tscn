@@ -25,7 +25,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainView:scale")
+tracks/0/path = NodePath("Visuals:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainView:position")
+tracks/1/path = NodePath("Visuals:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,46 +49,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainView:rotation")
+tracks/2/path = NodePath("Visuals:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MainView/Icon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.727273, 7.11111)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MainView/Icon:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.77187, 3.60826)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MainView/Icon:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -101,38 +65,38 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainView/Icon:position")
+tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.633333, 0.733333, 0.833333, 0.933333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.333333, 0.466667, 0.566667, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.727273, 7.11111), Vector2(0.727273, -12.5427), Vector2(0.727273, 44.2469), Vector2(-6.06052, 24.5868), Vector2(12.1211, 18.0334), Vector2(-6.06052, 24.5868), Vector2(12.1211, 18.0334), Vector2(0.727273, 7.11111)]
+"values": [Vector2(-2.38419e-07, -83), Vector2(-40, -120), Vector2(20, -4.99999), Vector2(-5.00003, -4.99999), Vector2(15, -4.99999), Vector2(-2.38419e-07, -83)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainView/Icon:scale")
+tracks/1/path = NodePath("Visuals:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.333333, 0.466667, 0.566667, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(3.77187, 3.60826), Vector2(3.77187, 3.80579), Vector2(3.77187, 3.09763), Vector2(3.77187, 3.60826)]
+"values": [0.0, -0.236369, 0.199648, -0.152752, 0.0777158, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainView/Icon:rotation")
+tracks/2/path = NodePath("Visuals:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.533333, 0.633333, 0.733333, 0.833333, 0.933333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.333333, 0.466667, 0.566667, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.0840647, 0.140707, 0.0, -0.138315, 0.23911, -0.138315, 0.23911, 0.0]
+"values": [Vector2(1.375, 1.6875), Vector2(1.375, 1.813), Vector2(1.375, 1.473), Vector2(1.375, 1.658), Vector2(1.375, 1.473), Vector2(1.375, 1.6875)]
 }
 
 [sub_resource type="Animation" id="Animation_pxe1b"]
@@ -141,7 +105,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainView:scale")
+tracks/0/path = NodePath("Visuals:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -153,7 +117,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainView:position")
+tracks/1/path = NodePath("Visuals:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -165,7 +129,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainView:rotation")
+tracks/2/path = NodePath("Visuals:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -182,7 +146,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainView:position")
+tracks/0/path = NodePath("Visuals:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -194,7 +158,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainView:scale")
+tracks/1/path = NodePath("Visuals:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -206,7 +170,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainView:rotation")
+tracks/2/path = NodePath("Visuals:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -252,11 +216,11 @@ libraries = {
 autoplay = "idle"
 playback_default_blend_time = 0.1
 
-[node name="MainView" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
 position = Vector2(-2.38419e-07, -83)
 scale = Vector2(1.375, 1.6875)
 
-[node name="Icon" type="Sprite2D" parent="MainView"]
+[node name="Icon" type="Sprite2D" parent="Visuals"]
 position = Vector2(0.727273, 7.11111)
 scale = Vector2(3.77187, 3.60826)
 texture = ExtResource("7_1ir1p")
